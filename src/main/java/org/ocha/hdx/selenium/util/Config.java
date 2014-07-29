@@ -14,25 +14,49 @@ import org.apache.log4j.Logger;
  */
 public class Config {
 	private static Logger logger = Logger.getLogger(FindInDatasetListPage.class);
-	
+
 	private static Properties prop = new Properties();
-	
+
 	static {
-		
+
 		try(InputStream input = Config.class.getClassLoader().getResourceAsStream("config.properties")) {
 			if (input == null) {
 				logger.error("Problem with config properties file");
-			}
-			else
+			} else {
 				prop.load(input);
+			}
 		}
-		catch (Exception e) {
+		catch (final Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
-	
+
 	public static String getDomainWithHttp(){
-		return prop.getProperty("base_url") ;
+		return prop.getProperty("base.url") ;
 	}
+
+	public static String getOrgNameForNewUser(){
+		return prop.getProperty("user.new.org") ;
+
+	}
+
+	public static String getNewUsername() {
+		return prop.getProperty("user.new.username") ;
+	}
+
+	public static String getNewUserPassword() {
+		return prop.getProperty("user.new.password") ;
+	}
+
+	public static String getSysadminUsername() {
+		return prop.getProperty("sysadmin.username") ;
+	}
+
+
+	public static String getSysadminPassword() {
+		return prop.getProperty("sysadmin.password") ;
+	}
+
+
 }

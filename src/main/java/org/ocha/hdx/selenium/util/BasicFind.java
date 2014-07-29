@@ -16,6 +16,10 @@ public class BasicFind {
 		this.generalFind = new GenericFind(driver);
 	}
 
+	public WebElement orgListMainMenuItem() {
+		return this.generalFind.byCSSSelectorAndAttributeContaining(".mainLinks li a", "href", "organization");
+	}
+
 	public WebElement datasetListMainMenuItem() {
 		return this.generalFind.byCSSSelectorAndAttributeContaining(".mainLinks li a", "href", "dataset");
 	}

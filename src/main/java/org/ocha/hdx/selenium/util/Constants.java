@@ -19,4 +19,8 @@ public class Constants {
 	public static final String FACET_NAME = "facet-name";
 	public static final String FACET_VALUE = "facet-value";
 	public static final String ORIGINAL_SEARCH_RESULTS_INFO = "original-search-results-info";
+	public static final String USERNAME = "username";
+	public static final String PASSWORD = "password";
+	public static final String ORG_NAME = "org-name";
+	public static final String ROLE = "role";
 }

@@ -8,6 +8,7 @@ import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.ocha.hdx.selenium.util.BasicFind;
 import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.GenericFind;
 import org.openqa.selenium.By;
 
 
@@ -23,10 +24,17 @@ public class BasicInteractions {
 
 	}; 
 
+	public static IInteraction clickOnLoginInMainMenuInteraction = context -> {
+		FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining("li.newLogin a", "href", "login").click();
+	};
+
 	public static IInteraction clickOnDatasetInMainMenuInteraction = context -> {
 		final BasicFind basicFind = FF(context, BasicFind.class);
 		basicFind.datasetListMainMenuItem().click();
 	};
+
+	public static IInteraction clickOnOrganizationsInMainMenuInteraction = 
+			context ->	FF(context, BasicFind.class).orgListMainMenuItem().click();
 
 	public static IInteraction clickOnElementWithId = context -> {
 		final String id = (String) context.remove(Constants.ID_OF_EL_TO_CLICK);

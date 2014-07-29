@@ -18,9 +18,13 @@ public class BasicActions {
 		BasicInteractions.navigateToUrlInteraction.doAction(context);
 	};
 
+	public static IAction goToDatasetListUsingMainMenuAction = context -> BasicInteractions.clickOnDatasetInMainMenuInteraction
+			.doAction(context);
 
+	public static IAction goToOrgListUsingMainMenuAction = context -> BasicInteractions.clickOnOrganizationsInMainMenuInteraction
+			.doAction(context);
 
-	public static IAction goToDatasetListUsingMainMenuAction = 
-			context -> BasicInteractions.clickOnDatasetInMainMenuInteraction.doAction(context);
+	public static IAction goToLoginPageUsingMainMenuAction = context -> BasicInteractions.clickOnLoginInMainMenuInteraction
+			.doAction(context);
 
 }

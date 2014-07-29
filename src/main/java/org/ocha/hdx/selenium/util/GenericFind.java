@@ -19,16 +19,25 @@ public class GenericFind {
 
 	public WebElement byCSSSelectorAndAttributeContaining(final String selector, final String attributeName, final String containedValue) {
 		final List<WebElement> menuItems = this.driver.findElements(By.cssSelector(selector));
-		final Stream<WebElement> dataStream = menuItems.stream().filter(
-				item ->  {
-					final String attr = item.getAttribute(attributeName);
-					if ( attr != null ) {
-						return attr.contains(containedValue);
-					}
-					return false;
-				}
-				); 
+		final Stream<WebElement> dataStream = menuItems.stream()
+				.filter(item -> item.isDisplayed())
+				.filter(
+						item ->  {
+							final String attr = item.getAttribute(attributeName);
+							if ( attr != null ) {
+								return attr.contains(containedValue);
+							}
+							return false;
+						}
+						); 
 		return dataStream.findFirst().orElse(null);
+	}
+
+	public WebElement byCSSSelectorAndDisplayed(final String selector) {
+		final List<WebElement> menuItems = this.driver.findElements(By.cssSelector(selector));
+		return menuItems.stream()
+				.filter(item -> item.isDisplayed())
+				.findFirst().orElse(null);
 	}
 
 	public WebElement byCSSSelectorAndBodyContaining(final String selector, final String containedValue) {
