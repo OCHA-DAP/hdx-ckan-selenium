@@ -27,4 +27,7 @@ public class BasicActions {
 	public static IAction goToLoginPageUsingMainMenuAction = context -> BasicInteractions.clickOnLoginInMainMenuInteraction
 			.doAction(context);
 
+	public static IAction goToSubmitPageUsingMainMenuAction = context -> BasicInteractions.clickOnSubmitInMainMenuInteraction
+			.doAction(context);
+
 }

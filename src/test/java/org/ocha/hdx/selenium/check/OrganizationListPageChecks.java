@@ -26,7 +26,7 @@ public class OrganizationListPageChecks {
 	};
 
 
-	public static ICheckAction checkOrgOnPage = context -> {
+	public static ICheckAction orgOnPageCheck = context -> {
 		final String orgName = Config.getOrgNameForNewUser();
 		try{
 			final WebElement orgEl = WD(context).findElement(By.partialLinkText(orgName));

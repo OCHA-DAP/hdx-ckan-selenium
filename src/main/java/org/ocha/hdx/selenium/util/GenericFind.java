@@ -25,6 +25,7 @@ public class GenericFind {
 						item ->  {
 							final String attr = item.getAttribute(attributeName);
 							if ( attr != null ) {
+								System.out.println("Contained value is " + containedValue + " result is " + attr.contains(containedValue) );
 								return attr.contains(containedValue);
 							}
 							return false;

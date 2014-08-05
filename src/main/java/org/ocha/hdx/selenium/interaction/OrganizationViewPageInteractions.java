@@ -30,7 +30,11 @@ public class OrganizationViewPageInteractions {
 
 		WD(context).findElement(By.partialLinkText("ADD MEMBER")).click();
 
+		new WebDriverWait(WD(context),5).until( 
+				(ExpectedCondition<Boolean>) d -> d.findElement(By.cssSelector("#s2id_username a"))!=null
+				);
 		WD(context).findElement(By.cssSelector("#s2id_username a")).click();
+
 		FF(context, GenericFind.class).byCSSSelectorAndDisplayed("input.select2-input").sendKeys(username.substring(0, 4));
 		new WebDriverWait(WD(context),5).until( 
 				(ExpectedCondition<Boolean>) d -> FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining("div.select2-result-label", "data-value", username)!=null
@@ -41,5 +45,21 @@ public class OrganizationViewPageInteractions {
 		FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining("div.select2-result-label", "data-value", role).click();
 
 		WD(context).findElement(By.cssSelector(".dataset-form .hdx-submit-btn")).click();
+	};
+
+	public static IInteraction removeMemberInteraction = context -> {
+		final String username = REMOVE(context, Constants.USERNAME, String.class);
+		final String role = REMOVE(context, Constants.ROLE, String.class);
+
+		FF(context,GenericFind.class).byCSSSelectorAndAttributeContaining(
+				".hdx-btn", "href", "#confirm-del-member-div-"+username).click();
+
+		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(".hdx-submit-btn", "Confirm").click();
+
+	};
+
+	public static IInteraction viewMembersInteraction = context -> {
+		FF(context, GenericFind.class).
+		byCSSSelectorAndAttributeContaining(".org-nums a", "href", "/organization/members").click();
 	};
 }
