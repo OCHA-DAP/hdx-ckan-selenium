@@ -3,12 +3,13 @@ package org.ocha.hdx.selenium.util;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GenericFind {
-
+	private static Logger logger = Logger.getLogger(GenericFind.class);
 	WebDriver driver;
 
 
@@ -25,7 +26,7 @@ public class GenericFind {
 						item ->  {
 							final String attr = item.getAttribute(attributeName);
 							if ( attr != null ) {
-								System.out.println("Contained value is " + containedValue + " result is " + attr.contains(containedValue) );
+								logger.debug("Contained value is " + containedValue + " result is " + attr.contains(containedValue) );
 								return attr.contains(containedValue);
 							}
 							return false;

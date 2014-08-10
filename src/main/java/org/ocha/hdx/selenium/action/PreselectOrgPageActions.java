@@ -5,17 +5,20 @@ package org.ocha.hdx.selenium.action;
 
 import org.ocha.hdx.selenium.interaction.PreselectOrgPageInteraction;
 import org.ocha.hdx.selenium.util.Config;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 
 /**
  * @author alexandru-m-g
  *
  */
 public class PreselectOrgPageActions {
-	public static IAction selectOrgFromConfig = context -> {
+	public static IAction selectOrgFromConfigAction = context -> {
 		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
-		context.put(Constants.ORG_NAME, orgName);
+		context.put(ContextConstants.ORG_NAME, orgName);
 
-		PreselectOrgPageInteraction.clickOnOrg.doAction(context);
+		PreselectOrgPageInteraction.clickOnOrgInteraction.doAction(context);
 	};
+
+	public static IAction requestEditorRightsAction = context -> 
+			PreselectOrgPageInteraction.requestEditorRightInteraction.doAction(context);
 }

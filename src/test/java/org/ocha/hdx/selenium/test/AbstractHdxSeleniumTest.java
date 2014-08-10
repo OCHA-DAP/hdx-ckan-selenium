@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -31,7 +31,7 @@ public class AbstractHdxSeleniumTest {
 
 	protected Map<String,Object> instantiateContext() {
 		final Map<String, Object> context = new HashMap<>();
-		context.put(Constants.DRIVER, driver);
+		context.put(ContextConstants.DRIVER, driver);
 		return context;
 	}
 

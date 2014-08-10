@@ -6,7 +6,8 @@ import static org.junit.Assert.assertTrue;
 import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.ocha.hdx.selenium.util.Config;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
+import org.ocha.hdx.selenium.util.SelectorConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class OrganizationListPageChecks {
 
 	public static ICheckAction searchTermInUrlCheck = context -> {
 		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
-		context.put(Constants.URL_CONTAINS, "q="+orgName);
+		context.put(ContextConstants.URL_CONTAINS, "q="+orgName);
 		BasicChecks.urlContainsCheck.doAction(context);
 	};
 
@@ -29,7 +30,7 @@ public class OrganizationListPageChecks {
 	public static ICheckAction orgOnPageCheck = context -> {
 		final String orgName = Config.getOrgNameForNewUser();
 		try{
-			final WebElement orgEl = WD(context).findElement(By.partialLinkText(orgName));
+			final WebElement orgEl = WD(context).findElement(By.id(SelectorConstants.ORG_ITEM_PREFIX+orgName));
 			assertNotNull(String.format("%s should be in the org list", orgName), orgEl);
 		}
 		catch (final NoSuchElementException e) {

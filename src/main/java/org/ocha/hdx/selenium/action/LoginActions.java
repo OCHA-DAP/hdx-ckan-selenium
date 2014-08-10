@@ -5,7 +5,7 @@ package org.ocha.hdx.selenium.action;
 
 import org.ocha.hdx.selenium.interaction.LoginInteractions;
 import org.ocha.hdx.selenium.util.Config;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 
 /**
  * @author alexandru-m-g
@@ -16,8 +16,8 @@ public class LoginActions {
 	public static IAction loginAsNewUserAction = context -> {
 		final String newUser = Config.getNewUsername();
 		final String password = Config.getNewUserPassword();
-		context.put(Constants.USERNAME, newUser);
-		context.put(Constants.PASSWORD, password);
+		context.put(ContextConstants.USERNAME, newUser);
+		context.put(ContextConstants.PASSWORD, password);
 		LoginInteractions.loginInteraction.doAction(context);
 
 	};
@@ -28,8 +28,8 @@ public class LoginActions {
 		final String sysadmin = Config.getSysadminUsername();
 		final String password = Config.getSysadminPassword();
 
-		context.put(Constants.USERNAME, sysadmin);
-		context.put(Constants.PASSWORD, password);
+		context.put(ContextConstants.USERNAME, sysadmin);
+		context.put(ContextConstants.PASSWORD, password);
 		LoginInteractions.loginInteraction.doAction(context);
 
 	};

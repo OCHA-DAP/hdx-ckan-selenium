@@ -1,6 +1,6 @@
 package org.ocha.hdx.selenium.util;
 
-public class Constants {
+public class ContextConstants {
 	public static final String DRIVER = "driver";
 	public static final String DESTINATION_URL = "destination-url";
 

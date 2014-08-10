@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 import org.ocha.hdx.selenium.entities.SearchResultInfo;
 import org.ocha.hdx.selenium.interaction.DatasetListPageInteractions;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.FindInDatasetListPage;
 import org.ocha.hdx.selenium.util.FindInDatasetListPage.DatasetInfo;
 import org.openqa.selenium.By;
@@ -32,7 +32,7 @@ public class DatasetListPageChecks {
 
 
 	private static ICheckAction selectedSortIsSomethingCheck = context -> {
-		final String something = (String) context.remove(Constants.LABEL_CONTAINS);
+		final String something = (String) context.remove(ContextConstants.LABEL_CONTAINS);
 
 		final FindInDatasetListPage find = FF(context, FindInDatasetListPage.class);
 		final WebElement dropDownLabel = find.sortDropdownLabel();
@@ -44,8 +44,8 @@ public class DatasetListPageChecks {
 
 	private static ICheckAction sortedByCheck = context -> {
 		final FindInDatasetListPage find = FF(context, FindInDatasetListPage.class);
-		final Function<DatasetInfo, Object> getter = (Function<DatasetInfo, Object>) context.remove(Constants.GETTER);
-		final Comparator<DatasetInfo> comparator = (Comparator<DatasetInfo>) context.remove(Constants.COMPARATOR);
+		final Function<DatasetInfo, Object> getter = (Function<DatasetInfo, Object>) context.remove(ContextConstants.GETTER);
+		final Comparator<DatasetInfo> comparator = (Comparator<DatasetInfo>) context.remove(ContextConstants.COMPARATOR);
 
 
 		final List<DatasetInfo> datasetInfoList	= find.allItems();
@@ -63,36 +63,36 @@ public class DatasetListPageChecks {
 	};
 
 	public static ICheckAction urlShowsSortByMetadataCheck = context -> {
-		context.put(Constants.URL_CONTAINS, "metadata_modified");
+		context.put(ContextConstants.URL_CONTAINS, "metadata_modified");
 		BasicChecks.urlContainsCheck.doAction(context);
 	};
 
 
 	public static ICheckAction urlShowsSortByNameAscCheck = context -> {
-		context.put(Constants.URL_CONTAINS, "title_string+asc");
+		context.put(ContextConstants.URL_CONTAINS, "title_string+asc");
 		BasicChecks.urlContainsCheck.doAction(context);
 
 	};
 
 	public static ICheckAction urlShowsSortByNameDescCheck = context -> {
-		context.put(Constants.URL_CONTAINS, "title_string+desc");
+		context.put(ContextConstants.URL_CONTAINS, "title_string+desc");
 		BasicChecks.urlContainsCheck.doAction(context);
 
 	};
 
 
 	public static ICheckAction selectedSortIsModifiedCheck = context -> {
-		context.put(Constants.LABEL_CONTAINS, "modified");
+		context.put(ContextConstants.LABEL_CONTAINS, "modified");
 		selectedSortIsSomethingCheck.doAction(context);
 	};
 
 	public static ICheckAction selectedSortIsNameAscCheck = context -> {
-		context.put(Constants.LABEL_CONTAINS, "Name Ascending");
+		context.put(ContextConstants.LABEL_CONTAINS, "Name Ascending");
 		selectedSortIsSomethingCheck.doAction(context);
 	};
 
 	public static ICheckAction selectedSortIsNameDescCheck = context -> {
-		context.put(Constants.LABEL_CONTAINS, "Name Descending");
+		context.put(ContextConstants.LABEL_CONTAINS, "Name Descending");
 		selectedSortIsSomethingCheck.doAction(context);
 	};
 
@@ -100,24 +100,24 @@ public class DatasetListPageChecks {
 
 
 	public static ICheckAction sortedByDateDescCheck = context -> {
-		context.put(Constants.GETTER, (Function<DatasetInfo, Object>) d -> d.getDate() );
-		context.put(Constants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> d.getDate().compareTo(dNext.getDate()) );
+		context.put(ContextConstants.GETTER, (Function<DatasetInfo, Object>) d -> d.getDate() );
+		context.put(ContextConstants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> d.getDate().compareTo(dNext.getDate()) );
 
 		sortedByCheck.doAction(context);
 
 	};
 
 	public static ICheckAction sortedByNameAscCheck = context -> {
-		context.put(Constants.GETTER, (Function<DatasetInfo, Object>) d -> d.getName() );
-		context.put(Constants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> dNext.getName().compareTo(d.getName()) );
+		context.put(ContextConstants.GETTER, (Function<DatasetInfo, Object>) d -> d.getName() );
+		context.put(ContextConstants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> dNext.getName().compareTo(d.getName()) );
 
 		sortedByCheck.doAction(context);
 
 	};
 
 	public static ICheckAction sortedByNameDescCheck = context -> {
-		context.put(Constants.GETTER, (Function<DatasetInfo, Object>) d -> d.getName() );
-		context.put(Constants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> d.getName().compareTo(dNext.getName()) );
+		context.put(ContextConstants.GETTER, (Function<DatasetInfo, Object>) d -> d.getName() );
+		context.put(ContextConstants.COMPARATOR, (Comparator<DatasetInfo>) (d,dNext)-> d.getName().compareTo(dNext.getName()) );
 
 		sortedByCheck.doAction(context);
 
@@ -125,13 +125,13 @@ public class DatasetListPageChecks {
 
 	public static ICheckAction beforeSearchOrFilterResultInfoSaveCheck = context -> {
 		DatasetListPageInteractions.readSearchResultInfo.doAction(context);
-		final SearchResultInfo searchResultInfo = REMOVE(context, Constants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
+		final SearchResultInfo searchResultInfo = REMOVE(context, ContextConstants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
 		assertNull(searchResultInfo.getSearchText());
 	};
 
 	public static ICheckAction compareNumbersInSearchResultInfoCheck = context -> {
-		final SearchResultInfo searchResultInfo = REMOVE(context, Constants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
-		final SearchResultInfo prevSearchResultInfo = REMOVE(context, Constants.PREV_SEARCH_RESULTS_INFO, SearchResultInfo.class);
+		final SearchResultInfo searchResultInfo = REMOVE(context, ContextConstants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
+		final SearchResultInfo prevSearchResultInfo = REMOVE(context, ContextConstants.PREV_SEARCH_RESULTS_INFO, SearchResultInfo.class);
 
 		assertTrue("Number of results after search needs to be smaller", 
 				prevSearchResultInfo.getResultsNum() > searchResultInfo.getResultsNum() );
@@ -141,18 +141,18 @@ public class DatasetListPageChecks {
 
 	public static ICheckAction somethingSearchResultInfoCheck = context -> {
 		DatasetListPageInteractions.readSearchResultInfo.doAction(context);
-		final String searchText = REMOVE(context, Constants.TEXT_TO_WRITE, String.class);
-		final SearchResultInfo searchResultInfo = REMOVE(context, Constants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
+		final String searchText = REMOVE(context, ContextConstants.TEXT_TO_WRITE, String.class);
+		final SearchResultInfo searchResultInfo = REMOVE(context, ContextConstants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
 
 		assertEquals(searchText.toLowerCase(), searchResultInfo.getSearchText().toLowerCase() );
 
-		context.put(Constants.SEARCH_RESULTS_INFO, searchResultInfo);
+		context.put(ContextConstants.SEARCH_RESULTS_INFO, searchResultInfo);
 		compareNumbersInSearchResultInfoCheck.doAction(context);
 
 	};
 
 	public static ICheckAction healthSearchResultInfoCheck = context -> {
-		context.put(Constants.TEXT_TO_WRITE, "health");
+		context.put(ContextConstants.TEXT_TO_WRITE, "health");
 		somethingSearchResultInfoCheck.doAction(context);
 	};
 

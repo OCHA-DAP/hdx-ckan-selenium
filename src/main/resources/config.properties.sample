@@ -1,4 +1,5 @@
 base.url=http://localhost:5000/
+base.non_reversable_actions = false
 
 user.new.username=newuser
 user.new.password=password

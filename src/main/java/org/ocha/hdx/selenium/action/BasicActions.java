@@ -5,7 +5,7 @@ package org.ocha.hdx.selenium.action;
 
 import org.ocha.hdx.selenium.interaction.BasicInteractions;
 import org.ocha.hdx.selenium.util.Config;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 
 /**
  * @author alexandru-m-g
@@ -14,7 +14,7 @@ import org.ocha.hdx.selenium.util.Constants;
 public class BasicActions {
 
 	public static IAction goToHomePageAction = context -> {
-		context.put(Constants.DESTINATION_URL, Config.getDomainWithHttp());
+		context.put(ContextConstants.DESTINATION_URL, Config.getDomainWithHttp());
 		BasicInteractions.navigateToUrlInteraction.doAction(context);
 	};
 

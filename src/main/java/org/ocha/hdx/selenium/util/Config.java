@@ -58,5 +58,13 @@ public class Config {
 		return prop.getProperty("sysadmin.password") ;
 	}
 
+	public static boolean getNonReversableActions() {
+		final String reversableStr =  prop.getProperty("base.non_reversable_actions");
+		if ( reversableStr!=null && "true".equals(reversableStr.trim()) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

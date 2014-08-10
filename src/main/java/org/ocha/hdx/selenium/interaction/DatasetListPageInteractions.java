@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import org.ocha.hdx.selenium.entities.SearchResultInfo;
 import org.ocha.hdx.selenium.test.DatasetListPageSortingTest;
 import org.ocha.hdx.selenium.util.BasicFind;
-import org.ocha.hdx.selenium.util.Constants;
+import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.FindInDatasetListPage;
 import org.ocha.hdx.selenium.util.GenericFind;
 import org.openqa.selenium.By;
@@ -31,10 +31,10 @@ public class DatasetListPageInteractions {
 	private static Logger logger = Logger.getLogger(DatasetListPageSortingTest.class);
 
 	public static IInteraction changeSortingToSomethingInteraction = context -> {
-		final String selectedLabelVal = REMOVE(context, Constants.SELECTED_LABEL_VAL, String.class);
+		final String selectedLabelVal = REMOVE(context, ContextConstants.SELECTED_LABEL_VAL, String.class);
 		final FindInDatasetListPage findInDatasetListPage = FF(context, FindInDatasetListPage.class);
 
-		context.put(Constants.ID_OF_EL_TO_CLICK, "field-order-by");
+		context.put(ContextConstants.ID_OF_EL_TO_CLICK, "field-order-by");
 		BasicInteractions.clickOnElementWithId.doAction(context);
 
 		final WebElement sortOptionEl = findInDatasetListPage.sortOptionByVal(selectedLabelVal);
@@ -45,19 +45,19 @@ public class DatasetListPageInteractions {
 	};
 
 	public static IInteraction changeSortingToNameAscInteraction = context -> {
-		context.put(Constants.SELECTED_LABEL_VAL, "title_string asc");
+		context.put(ContextConstants.SELECTED_LABEL_VAL, "title_string asc");
 		changeSortingToSomethingInteraction.doAction(context);
 	};
 
 	public static IInteraction changeSortingToNameDescInteraction = context -> {
-		context.put(Constants.SELECTED_LABEL_VAL, "title_string desc");
+		context.put(ContextConstants.SELECTED_LABEL_VAL, "title_string desc");
 		changeSortingToSomethingInteraction.doAction(context);
 	};
 
 	public static IInteraction searchForTextInteraction = context -> {
-		context.put(Constants.CSS_SELECTOR_OF_EL_TO_WRITE, ".form-search input.searchInput");
+		context.put(ContextConstants.CSS_SELECTOR_OF_EL_TO_WRITE, ".form-search input.searchInput");
 		BasicInteractions.writeInElementWithCssSelector.doAction(context);
-		context.put(Constants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK, ".form-search button.button");
+		context.put(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK, ".form-search button.button");
 		BasicInteractions.clickOnElementWithCssSelector.doAction(context);
 	};
 
@@ -88,7 +88,7 @@ public class DatasetListPageInteractions {
 
 			final SearchResultInfo searchResultInfo = new SearchResultInfo(numFound, lastPageNum, searchText);
 
-			context.put(Constants.SEARCH_RESULTS_INFO, searchResultInfo);
+			context.put(ContextConstants.SEARCH_RESULTS_INFO, searchResultInfo);
 
 		}
 
@@ -96,7 +96,7 @@ public class DatasetListPageInteractions {
 
 	public static IInteraction openFacetInteraction = context -> {
 		final GenericFind find = FF(context, GenericFind.class);
-		final String facetName = REMOVE(context, Constants.FACET_NAME, String.class);
+		final String facetName = REMOVE(context, ContextConstants.FACET_NAME, String.class);
 
 		final WebElement facetEl = find.byCSSSelectorAndBodyContaining(".facet-title", facetName);
 		facetEl.click();
@@ -106,15 +106,15 @@ public class DatasetListPageInteractions {
 
 	public static IInteraction showMoreFacetValuesInteraction = context -> {
 		final GenericFind find = FF(context, GenericFind.class);
-		final String facetName = REMOVE(context, Constants.FACET_NAME, String.class);
+		final String facetName = REMOVE(context, ContextConstants.FACET_NAME, String.class);
 
 		final WebElement facetEl = find.byCSSSelectorAndBodyContaining(".facet-url", facetName);
 		facetEl.click();
 	};
 
 	public static IInteraction filterByFacetValueInteraction = context -> {
-		final String facetName = REMOVE(context, Constants.FACET_NAME, String.class);
-		final String facetValue = REMOVE(context, Constants.FACET_VALUE, String.class);
+		final String facetName = REMOVE(context, ContextConstants.FACET_NAME, String.class);
+		final String facetValue = REMOVE(context, ContextConstants.FACET_VALUE, String.class);
 
 		final String xpath = String.format("//h2[contains(.,'%s')]/following-sibling::nav/ul/li/a[contains(@href,'%s')]", 
 				facetName, facetValue);
