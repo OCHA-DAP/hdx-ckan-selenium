@@ -21,14 +21,14 @@ public class OrganizationListPageChecks {
 	};
 
 	public static ICheckAction searchTermInUrlCheck = context -> {
-		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
+		final String orgName = Config.getOrgNameForNomemberUser().toLowerCase();
 		context.put(ContextConstants.URL_CONTAINS, "q="+orgName);
 		BasicChecks.urlContainsCheck.doAction(context);
 	};
 
 
 	public static ICheckAction orgOnPageCheck = context -> {
-		final String orgName = Config.getOrgNameForNewUser();
+		final String orgName = Config.getOrgNameForNomemberUser();
 		try{
 			final WebElement orgEl = WD(context).findElement(By.id(SelectorConstants.ORG_ITEM_PREFIX+orgName));
 			assertNotNull(String.format("%s should be in the org list", orgName), orgEl);

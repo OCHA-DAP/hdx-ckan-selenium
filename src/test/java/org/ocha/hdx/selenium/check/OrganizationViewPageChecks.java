@@ -22,7 +22,7 @@ import org.openqa.selenium.WebElement;
 public class OrganizationViewPageChecks {
 
 	private static ICheckAction userFromConfigInMemberListCheck = context -> {
-		final String username = Config.getNewUsername();
+		final String username = Config.getNomemberUsername();
 		final String role = REMOVE(context, ContextConstants.ROLE, String.class);
 		try{
 			final String selector = String.format("#%s .%s", 

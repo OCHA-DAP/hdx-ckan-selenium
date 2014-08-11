@@ -34,7 +34,7 @@ public class DatasetListPageSortingTest extends AbstractHdxSeleniumTest {
 	public void test() {
 		final Map<String,Object> context = this.instantiateContext();
 
-		BasicActions.goToHomePageAction.doAction(context);;
+		BasicActions.goToHomePageAction.doAction(context);
 
 		BasicChecks.datasetMainMenuItemExistsCheck.doAction(context);
 

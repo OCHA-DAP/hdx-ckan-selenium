@@ -9,21 +9,21 @@ public class OrganizationViewPageActions {
 			context -> OrganizationViewPageInteractions.requestMembershipInteraction.doAction(context);
 
 			public static IAction addUserFromConfigToOrgAsMember = context -> {
-				final String username = Config.getNewUsername();
+				final String username = Config.getNomemberUsername();
 				context.put(ContextConstants.USERNAME, username);
 				context.put(ContextConstants.ROLE, "member");
 				OrganizationViewPageInteractions.addMemberInteraction.doAction(context);
 			};
 
 			public static IAction addUserFromConfigToOrgAsEditor = context -> {
-				final String username = Config.getNewUsername();
+				final String username = Config.getNomemberUsername();
 				context.put(ContextConstants.USERNAME, username);
 				context.put(ContextConstants.ROLE, "editor");
 				OrganizationViewPageInteractions.addMemberInteraction.doAction(context);
 			};
 
 			public static IAction removeConfigMemberFromOrg = context -> {
-				final String username = Config.getNewUsername();
+				final String username = Config.getNomemberUsername();
 				context.put(ContextConstants.USERNAME, username);
 				context.put(ContextConstants.ROLE, "member");
 				OrganizationViewPageInteractions.removeMemberInteraction.doAction(context);
