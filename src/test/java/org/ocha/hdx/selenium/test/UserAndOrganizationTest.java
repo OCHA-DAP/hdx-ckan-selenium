@@ -43,7 +43,7 @@ public class UserAndOrganizationTest extends AbstractHdxSeleniumTest{
 		 */
 		logger.info("User requesting membership in org");
 
-		BasicActions.goToHomePageAction.doAction(context);;
+		BasicActions.goToHomePageAction.doAction(context);
 
 		BasicActions.goToLoginPageUsingMainMenuAction.doAction(context);
 		LoginActions.loginAsNewUserAction.doAction(context);

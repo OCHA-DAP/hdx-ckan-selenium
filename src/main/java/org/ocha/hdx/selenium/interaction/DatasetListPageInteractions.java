@@ -120,4 +120,9 @@ public class DatasetListPageInteractions {
 				facetName, facetValue);
 		WD(context).findElement(By.xpath(xpath)).click();
 	};
+
+	public static IInteraction clickOnDatasetInteraction = context -> {
+		final String datasetDisplayName = REMOVE(context, ContextConstants.DATASET_DISPLAY_NAME, String.class);
+		WD(context).findElement(By.partialLinkText(datasetDisplayName)).click();
+	};
 }
