@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.ocha.hdx.selenium.action.BasicActions;
 import org.ocha.hdx.selenium.action.LoginActions;
 import org.ocha.hdx.selenium.action.PreselectOrgPageActions;
+import org.ocha.hdx.selenium.check.DatasetFormPageChecks;
 
 /**
  * @author Dan Mihaila
@@ -56,9 +57,11 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		BasicActions.goToSubmitPageUsingMainMenuAction.doAction(context);
 
 		PreselectOrgPageActions.selectOrgForEditorUserFromConfigAction.doAction(context);
-		PreselectOrgPageActions.requestEditorRightsAction.doAction(context);
+		DatasetFormPageChecks.newDatasetFormRenderedCheck.doAction(context);
+		logger.info("Create dataset page ...");
+		logger.info("Create dataset page ...");
 
-		LoginActions.logoutAction.doAction(context);
+		//LoginActions.logoutAction.doAction(context);
 
 	}
 
