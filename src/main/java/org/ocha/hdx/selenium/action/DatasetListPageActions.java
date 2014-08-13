@@ -22,6 +22,13 @@ public class DatasetListPageActions {
 		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
 
 	};
+
+	public static IAction searchForAirportsInZambiaAction = context -> {
+		context.put(ContextConstants.TEXT_TO_WRITE, "Airports in Zambia");
+		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
+
+	};
+
 	public static IAction openTagsFacetAction = context -> {
 		context.put(ContextConstants.FACET_NAME, "Tags");
 		DatasetListPageInteractions.openFacetInteraction.doAction(context);
@@ -49,5 +56,11 @@ public class DatasetListPageActions {
 		DatasetListPageInteractions.readSearchResultInfo.doAction(context);
 		final SearchResultInfo searchResultInfo = REMOVE(context, ContextConstants.SEARCH_RESULTS_INFO, SearchResultInfo.class);
 		context.put(ContextConstants.ORIGINAL_SEARCH_RESULTS_INFO, searchResultInfo);
+	};
+
+	public static IAction viewAirportsInZambiaDatasetAction = context -> {
+		context.put(ContextConstants.DATASET_DISPLAY_NAME, "Airports in Zambia");
+		DatasetListPageInteractions.clickOnDatasetInteraction.doAction(context);
+
 	};
 }

@@ -30,7 +30,7 @@ public class OrganizationListPageChecks {
 	public static ICheckAction orgOnPageCheck = context -> {
 		final String orgName = Config.getOrgNameForNomemberUser();
 		try{
-			final WebElement orgEl = WD(context).findElement(By.id(SelectorConstants.ORG_ITEM_PREFIX+orgName));
+			final WebElement orgEl = WD(context).findElement(By.id(SelectorConstants.ORG_ITEM_PREFIX+orgName.toLowerCase()));
 			assertNotNull(String.format("%s should be in the org list", orgName), orgEl);
 		}
 		catch (final NoSuchElementException e) {

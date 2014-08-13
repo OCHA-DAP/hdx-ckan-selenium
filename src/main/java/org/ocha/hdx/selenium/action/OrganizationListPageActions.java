@@ -14,7 +14,7 @@ public class OrganizationListPageActions {
 	};
 	public static IAction viewOrgFromConfigAction = context -> {
 		final String orgName = Config.getOrgNameForNomemberUser();
-		context.put(ContextConstants.ORG_NAME, orgName);
+		context.put(ContextConstants.ORG_NAME, orgName.toLowerCase());
 		OrganizationListPageInteraction.viewOrgInteraction.doAction(context);
 
 	};
