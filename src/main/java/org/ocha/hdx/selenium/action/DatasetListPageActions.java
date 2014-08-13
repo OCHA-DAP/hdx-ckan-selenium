@@ -28,6 +28,12 @@ public class DatasetListPageActions {
 		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
 
 	};
+	
+	public static IAction searchForPakistanBaselineAction = context -> {
+		context.put(ContextConstants.TEXT_TO_WRITE, "Pakistan Baseline");
+		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
+
+	};
 
 	public static IAction openTagsFacetAction = context -> {
 		context.put(ContextConstants.FACET_NAME, "Tags");
@@ -60,6 +66,12 @@ public class DatasetListPageActions {
 
 	public static IAction viewAirportsInZambiaDatasetAction = context -> {
 		context.put(ContextConstants.DATASET_DISPLAY_NAME, "Airports in Zambia");
+		DatasetListPageInteractions.clickOnDatasetInteraction.doAction(context);
+
+	};
+	
+	public static IAction viewPakistanBaselineDatasetAction = context -> {
+		context.put(ContextConstants.DATASET_DISPLAY_NAME, "Pakistan Baseline");
 		DatasetListPageInteractions.clickOnDatasetInteraction.doAction(context);
 
 	};

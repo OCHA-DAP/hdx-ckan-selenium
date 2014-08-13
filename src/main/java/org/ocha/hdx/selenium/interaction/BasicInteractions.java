@@ -7,6 +7,7 @@ import static org.ocha.hdx.selenium.util.Util.FF;
 import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.apache.log4j.Logger;
+import org.ocha.hdx.selenium.action.IAction;
 import org.ocha.hdx.selenium.util.BasicFind;
 import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.GenericFind;
@@ -47,42 +48,49 @@ public class BasicInteractions {
 	public static IInteraction clickOnOrganizationsInMainMenuInteraction = 
 			context ->	FF(context, BasicFind.class).orgListMainMenuItem().click();
 
-			public static IInteraction clickOnElementWithId = context -> {
-				final String id = (String) context.remove(ContextConstants.ID_OF_EL_TO_CLICK);
-				if (id == null) {
-					throw new NullPointerException(ContextConstants.ID_OF_EL_TO_CLICK + " should not be null in context");
-				}
-				WD(context).findElement(By.id(id)).click();
+	public static IInteraction clickOnElementWithId = context -> {
+		final String id = (String) context.remove(ContextConstants.ID_OF_EL_TO_CLICK);
+		if (id == null) {
+			throw new NullPointerException(ContextConstants.ID_OF_EL_TO_CLICK + " should not be null in context");
+		}
+		WD(context).findElement(By.id(id)).click();
 
-			};
+	};
 
-			public static IInteraction clickOnElementWithCssSelector = context -> {
-				final String selector = (String) context.remove(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK);
-				if (selector == null) {
-					throw new NullPointerException(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK + " should not be null in context");
-				}
-				WD(context).findElement(By.cssSelector(selector)).click();
+	public static IInteraction clickOnElementWithCssSelector = context -> {
+		final String selector = (String) context.remove(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK);
+		if (selector == null) {
+			throw new NullPointerException(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK + " should not be null in context");
+		}
+		WD(context).findElement(By.cssSelector(selector)).click();
 
-			};
+	};
 
-			public static IInteraction writeInElementWithId = context -> {
-				final String id = (String) context.remove(ContextConstants.ID_OF_EL_TO_WRITE);
-				final String text = (String) context.remove(ContextConstants.TEXT_TO_WRITE);
-				if (id == null) {
-					throw new NullPointerException(ContextConstants.ID_OF_EL_TO_CLICK + " should not be null in context");
-				}
-				WD(context).findElement(By.id(id)).sendKeys(text);
+	public static IInteraction writeInElementWithId = context -> {
+		final String id = (String) context.remove(ContextConstants.ID_OF_EL_TO_WRITE);
+		final String text = (String) context.remove(ContextConstants.TEXT_TO_WRITE);
+		if (id == null) {
+			throw new NullPointerException(ContextConstants.ID_OF_EL_TO_CLICK + " should not be null in context");
+		}
+		WD(context).findElement(By.id(id)).sendKeys(text);
 
-			};
+	};
 
-			public static IInteraction writeInElementWithCssSelector = context -> {
-				final String selector = (String) context.remove(ContextConstants.CSS_SELECTOR_OF_EL_TO_WRITE);
-				final String text = (String) context.remove(ContextConstants.TEXT_TO_WRITE);
-				if (selector == null) {
-					throw new NullPointerException(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK + " should not be null in context");
-				}
-				WD(context).findElement(By.cssSelector(selector)).sendKeys(text);
+	public static IInteraction writeInElementWithCssSelector = context -> {
+		final String selector = (String) context.remove(ContextConstants.CSS_SELECTOR_OF_EL_TO_WRITE);
+		final String text = (String) context.remove(ContextConstants.TEXT_TO_WRITE);
+		if (selector == null) {
+			throw new NullPointerException(ContextConstants.CSS_SELECTOR_OF_ELEMENT_TO_CLICK + " should not be null in context");
+		}
+		WD(context).findElement(By.cssSelector(selector)).sendKeys(text);
 
-			};
+	};
+	
+	public static IInteraction cancelFileDownloadDialogInteraction = context -> {
+		WD(context).switchTo().alert().dismiss();
+	};
+	
+	public static IAction clickOnActivityStreamInteraction = 
+			context -> WD(context).findElement(By.cssSelector(".mx-activity-stream")).click();
 
 }

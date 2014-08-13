@@ -40,4 +40,8 @@ public class Util {
 		return result;
 
 	}
+	
+	public static String REMOVE_STRING(final Map<String,Object> context, final String key) {
+		return REMOVE(context, key, String.class);
+	}
 }

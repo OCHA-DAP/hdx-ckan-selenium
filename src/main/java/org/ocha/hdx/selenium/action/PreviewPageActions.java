@@ -23,4 +23,10 @@ public class PreviewPageActions {
 			
 	public static IAction selectLatitudeAndLongitudeColsAction = 
 			context -> PreviewPageInteractions.selectLatitudeAndLongitudeInteraction.doAction(context);
+			
+//	public static IAction downloadCsvFileAction = context -> {
+//		PreviewPageInteractions.downloadCsvFileInteraction.doAction(context);
+//		BasicInteractions.cancelFileDownloadDialogInteraction.doAction(context);
+//	};
+			
 }

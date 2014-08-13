@@ -7,4 +7,6 @@ import org.openqa.selenium.By;
 public class DatasetViewPageInteraction {
 	public static IInteraction previewTheFirstResourceInteraction = 
 			context -> WD(context).findElement(By.partialLinkText("PREVIEW")).click(); 
+			
+	public static IInteraction clickOnCountryLinkInteraction = context -> WD(context).findElement(By.cssSelector(".mx-country a")).click();
 }

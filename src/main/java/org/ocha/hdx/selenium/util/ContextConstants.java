@@ -26,4 +26,5 @@ public class ContextConstants {
 	public static final String DATASET_DISPLAY_NAME = "dataset-display-name";
 	public static final String FROM = "from";
 	public static final String TO = "to";
+	public static final String SEARCH_STRING = "search-string";
 }
