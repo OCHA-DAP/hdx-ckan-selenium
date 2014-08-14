@@ -59,7 +59,6 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		PreselectOrgPageActions.selectOrgForEditorUserFromConfigAction.doAction(context);
 		DatasetFormPageChecks.newDatasetFormRenderedCheck.doAction(context);
 		logger.info("Create dataset page ...");
-		logger.info("Create dataset page ...");
 
 		//LoginActions.logoutAction.doAction(context);
 

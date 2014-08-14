@@ -20,7 +20,8 @@ public class BasicChecks {
 
 	public static ICheckAction urlContainsCheck = context -> {
 		final String str = (String) context.remove(ContextConstants.URL_CONTAINS);
-		WD(context).getCurrentUrl().contains(str);
+		final String currentUrl = WD(context).getCurrentUrl();
+		assertTrue("It needs to be the url for creating new dataset",WD(context).getCurrentUrl().contains(str));
 
 	};
 
