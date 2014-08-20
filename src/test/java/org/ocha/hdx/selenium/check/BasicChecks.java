@@ -20,11 +20,8 @@ public class BasicChecks {
 
 	public static ICheckAction urlContainsCheck = context -> {
 		final String str = (String) context.remove(ContextConstants.URL_CONTAINS);
-		final String currentUrl = WD(context).getCurrentUrl();
 		assertTrue("It needs to be the url for creating new dataset",WD(context).getCurrentUrl().contains(str));
-
 	};
-
 
 	public static ICheckAction successfulMessageCheck = context -> {
 		if ( Config.getNonReversableActions()) {
@@ -34,6 +31,19 @@ public class BasicChecks {
 			}
 			catch(final NoSuchElementException e){
 				assertTrue("There needs to be a succesful message on the page",false);
+			}
+		}
+
+	};
+
+	public static ICheckAction errorMessageCheck = context -> {
+		if ( Config.getNonReversableActions()) {
+			try{
+				WD(context).findElement(By.cssSelector(".alert-error"));
+				assertTrue("There needs to be a error message on the page",true);
+			}
+			catch(final NoSuchElementException e){
+				assertTrue("There needs to be a error message on the page",false);
 			}
 		}
 

@@ -10,8 +10,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.ocha.hdx.selenium.action.BasicActions;
+import org.ocha.hdx.selenium.action.DatasetCreationActions;
 import org.ocha.hdx.selenium.action.LoginActions;
 import org.ocha.hdx.selenium.action.PreselectOrgPageActions;
+import org.ocha.hdx.selenium.check.DatasetCreationChecks;
 import org.ocha.hdx.selenium.check.DatasetFormPageChecks;
 
 /**
@@ -58,6 +60,14 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 
 		PreselectOrgPageActions.selectOrgForEditorUserFromConfigAction.doAction(context);
 		DatasetFormPageChecks.newDatasetFormRenderedCheck.doAction(context);
+		DatasetCreationActions.nextAddDataAction.doAction(context);
+		DatasetCreationChecks.countryErrorCheck.doAction(context);
+
+		//add country
+		DatasetCreationActions.addCountryAction.doAction(context);
+
+
+
 		logger.info("Create dataset page ...");
 
 		//LoginActions.logoutAction.doAction(context);
