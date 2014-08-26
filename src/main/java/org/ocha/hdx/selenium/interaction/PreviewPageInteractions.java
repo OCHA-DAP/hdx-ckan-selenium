@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class PreviewPageInteractions {
+	
 	public static IPreviewInteraction showOnlyRowsInteraction = context -> {
 
 		final Integer from = REMOVE(context, ContextConstants.FROM, Integer.class);
@@ -43,4 +44,9 @@ public class PreviewPageInteractions {
 		WD(context).findElement(By.cssSelector(".editor-update-map")).click();
 
 	};
+	
+	public static IInteraction downloadCsvFileInteraction = 
+			context -> FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(".actions a img", "src", "dd").click();
+			
+	
 }

@@ -10,7 +10,9 @@ import org.junit.Test;
 import org.ocha.hdx.selenium.action.BasicActions;
 import org.ocha.hdx.selenium.action.DatasetListPageActions;
 import org.ocha.hdx.selenium.action.DatasetViewPageActions;
+import org.ocha.hdx.selenium.action.GroupViewPageActions;
 import org.ocha.hdx.selenium.action.PreviewPageActions;
+import org.ocha.hdx.selenium.check.GroupViewPageChecks;
 import org.ocha.hdx.selenium.check.PreviewPageChecks;
 
 /**
@@ -38,6 +40,17 @@ public class PreviewResourceTest extends AbstractHdxSeleniumTest {
 		PreviewPageActions.selectLatitudeAndLongitudeColsAction.doAction(context);
 		
 		PreviewPageChecks.threeMarkersAppearOnMapCheck.doAction(context);
+		
+//		PreviewPageActions.downloadCsvFileAction.doAction(context);
+		
+		DatasetListPageActions.searchForPakistanBaselineAction.doAction(context);
+		DatasetListPageActions.viewPakistanBaselineDatasetAction.doAction(context);
+		
+		DatasetViewPageActions.viewCountryPageAction.doAction(context);
+		GroupViewPageChecks.onPakistanPageCheck.doAction(context);
+		
+		GroupViewPageActions.viewActivityStream.doAction(context);
+		GroupViewPageChecks.listOfActivitiesAppearsCheck.doAction(context);
 		
 		logger.info("Preview Resource Test End ");
 	}

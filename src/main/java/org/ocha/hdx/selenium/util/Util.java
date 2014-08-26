@@ -45,6 +45,10 @@ public class Util {
 		return result;
 
 	}
+		
+	public static String REMOVE_STRING(final Map<String,Object> context, final String key) {
+		return REMOVE(context, key, String.class);
+	}
 
 	/**
 	 * Method that waits for 5 seconds or until a specific element is loaded and displayed.
