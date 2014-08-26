@@ -34,10 +34,10 @@ public class DatasetCreationActions {
 		DatasetCreationActions.datasetDescriptionAction.doAction(context);
 		DatasetCreationActions.datasetLicenseAction.doAction(context);
 		//		DatasetCreationActions.datasetOrganisationAction.doAction(context);
-		//		DatasetCreationActions.datasetVisibilityAction.doAction(context);
-		//		DatasetCreationActions.datasetMethodologyAction.doAction(context);
+		DatasetCreationActions.datasetVisibilityAction.doAction(context);
+		DatasetCreationActions.datasetMethodologyAction.doAction(context);
 		//		DatasetCreationActions.datasetTagsAction.doAction(context);
-		//		DatasetCreationActions.datasetCaveatsAction.doAction(context);
+		DatasetCreationActions.datasetCaveatsAction.doAction(context);
 	};
 
 	public static IAction datasetTitleAction = context -> {
@@ -69,9 +69,19 @@ public class DatasetCreationActions {
 	};
 
 	public static IAction datasetLicenseAction = context -> {
-		//final String src = "United Nations Office for the Coordination of Humanitarian Affairs";
-		DatasetCreationInteraction.datasetLicenseInteraction.doAction(context);
+		DatasetCreationInteraction.datasetLicenseInteraction.doAction(context, DatasetConstants.LICENSE, DatasetConstants.TEXT_SHORT);
 	};
 
+	public static IAction datasetVisibilityAction = context -> {
+		DatasetCreationInteraction.datasetVisibilityInteraction.doAction(context);
+	};
+
+	public static IAction datasetMethodologyAction = context -> {
+		DatasetCreationInteraction.datasetMethodologyInteraction.doAction(context, DatasetConstants.METHODOLOGY, DatasetConstants.TEXT_SHORT);
+	};
+
+	public static IAction datasetCaveatsAction = context -> {
+		DatasetCreationInteraction.datasetCaveatsInteraction.doAction(context, DatasetConstants.CAVEATS, DatasetConstants.TEXT_SHORT);
+	};
 
 }

@@ -33,7 +33,7 @@ public class DatasetCreationInteraction {
 	public static IInteraction clickSelectorCountryInteraction = context -> {
 
 		String selector = "div.select2-container a.select2-choice";
-		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, null, null);
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 
 		//country selector
 		WD(context).findElement(By.cssSelector(selector)).click();
@@ -59,20 +59,72 @@ public class DatasetCreationInteraction {
 		WD(context).findElement(By.id("field-title")).sendKeys(title);
 	};
 
-	public static IInteraction datasetSourceInteraction= context -> {
+	public static IInteraction datasetSourceInteraction = context -> {
 		final String src = REMOVE(context, DatasetConstants.SOURCE, String.class);
 		WD(context).findElement(By.id("field-dataset_source")).sendKeys(src);
 	};
 
-	public static IInteraction datasetDescriptionInteraction= context -> {
+	public static IInteraction datasetDescriptionInteraction = context -> {
 		final String desc = REMOVE(context, DatasetConstants.DESCRIPTION, String.class);
 		WD(context).findElement(By.id("field-notes")).sendKeys(desc);
 	};
 
-	public static IInteraction datasetLicenseInteraction= context -> {
-		//final String desc = REMOVE(context, DatasetConstants.DESCRIPTION, String.class);
-		//WD(context).findElement(By.id("field-notes")).sendKeys(desc);
+	public static IInteraction datasetLicenseInteraction = context -> {
+
+		String selector = "#mx-dataset-license div.select2-container a";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
+		//license selector
+		WD(context).findElement(By.cssSelector(selector)).click();
+		selector = "#field-license option";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
+		final String attr = "value";
+		final String attrValue = "hdx-other";
+		FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(selector, attr, attrValue).click();
+		logger.info("clicked on license");
+
+		selector = "#field-license_other";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
+		final String licenseOther = REMOVE(context, DatasetConstants.LICENSE, String.class);
+		WD(context).findElement(By.id("field-license_other")).sendKeys(licenseOther);
+
+		logger.info("filled the other field for license");
+
 	};
 
+	public static IInteraction datasetVisibilityInteraction = context -> {
+
+		final String selector = "#mx-dataset-visibility div.select2-container a";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
+		//visibility selector
+		WD(context).findElement(By.cssSelector(selector)).click();
+		final String optionSelector = "#field-private option";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, optionSelector);
+		final String attr = "value";
+		final String attrValue = "True";
+		FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(optionSelector, attr, attrValue).click();
+		//click again to close the dropdown
+		WD(context).findElement(By.cssSelector(selector)).click();
+		logger.info("clicked on visibility");
+	};
+
+	public static IInteraction datasetMethodologyInteraction = context -> {
+
+		final String selector = "#meth_other_radio";
+		WD(context).findElement(By.cssSelector(selector)).click();
+		final String methTxt = REMOVE(context, DatasetConstants.METHODOLOGY, String.class);
+		WD(context).findElement(By.id("method_other")).sendKeys(methTxt);
+
+		logger.info("clicked on methodology other");
+	};
+
+	public static IInteraction datasetCaveatsInteraction = context -> {
+
+		//final String selector = "#field_caveats";
+		//WD(context).findElement(By.cssSelector(selector)).click();
+		final String caveatsTxt = REMOVE(context, DatasetConstants.CAVEATS, String.class);
+		WD(context).findElement(By.id("field-caveats")).sendKeys(caveatsTxt);
+
+		logger.info("clicked on methodology other");
+	};
 
 }

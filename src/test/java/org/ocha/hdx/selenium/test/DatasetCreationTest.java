@@ -86,7 +86,7 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 
 		logger.info("Create dataset page ...");
 
-		//LoginActions.logoutAction.doAction(context);
+		LoginActions.logoutAction.doAction(context);
 
 	}
 

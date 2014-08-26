@@ -26,7 +26,7 @@ public class PreselectOrgPageInteraction {
 		final String orgName = REMOVE(context, ContextConstants.ORG_NAME, String.class);
 
 		final String selector = ".mx-init-complete";
-		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, null, null);
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 
 		//		new WebDriverWait(WD(context),5).until((ExpectedCondition<Boolean>) d -> 
 		//		{
@@ -43,7 +43,7 @@ public class PreselectOrgPageInteraction {
 	public static IInteraction requestEditorRightInteraction = context -> {
 		if ( Config.getNonReversableActions() ) {
 			final String selector = ".modal-footer button.hdx-submit-btn";
-			Util.checkAndWaitIsLoadedByCSSSelector(context, selector, null, null);
+			Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 			//			new WebDriverWait(WD(context),5).until( 
 			//					(ExpectedCondition<Boolean>) d -> 
 			//					FF(context, GenericFind.class).byCSSSelectorAndDisplayed(selector)!=null

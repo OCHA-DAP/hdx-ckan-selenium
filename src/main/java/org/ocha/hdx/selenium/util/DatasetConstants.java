@@ -22,4 +22,12 @@ public class DatasetConstants {
 
 	public static final String SOURCE = "dataset_source";
 
+	public static final String METHODOLOGY = "dataset_methodology";
+
+	public static final String CAVEATS = "dataset_caveats";
+
+	public static final String TEXT_SHORT = "Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.";
+
+	public static final String LICENSE = "dataset_license";
+
 }
