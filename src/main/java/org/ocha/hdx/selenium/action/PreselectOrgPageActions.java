@@ -12,13 +12,20 @@ import org.ocha.hdx.selenium.util.ContextConstants;
  *
  */
 public class PreselectOrgPageActions {
-	public static IAction selectOrgFromConfigAction = context -> {
-		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
+	public static IAction selectOrgNomemberUserFromConfigAction = context -> {
+		final String orgName = Config.getOrgNameForNomemberUser().toLowerCase();
+		context.put(ContextConstants.ORG_NAME, orgName);
+
+		PreselectOrgPageInteraction.clickOnOrgInteraction.doAction(context);
+	};
+
+	public static IAction selectOrgForEditorUserFromConfigAction = context -> {
+		final String orgName = Config.getOrgNameForEditorUser().toLowerCase();
 		context.put(ContextConstants.ORG_NAME, orgName);
 
 		PreselectOrgPageInteraction.clickOnOrgInteraction.doAction(context);
 	};
 
 	public static IAction requestEditorRightsAction = context -> 
-			PreselectOrgPageInteraction.requestEditorRightInteraction.doAction(context);
+	PreselectOrgPageInteraction.requestEditorRightInteraction.doAction(context);
 }

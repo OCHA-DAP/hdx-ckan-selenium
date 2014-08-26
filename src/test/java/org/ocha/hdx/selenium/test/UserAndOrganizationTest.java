@@ -94,7 +94,7 @@ public class UserAndOrganizationTest extends AbstractHdxSeleniumTest{
 		LoginActions.loginAsNewUserAction.doAction(context);
 		BasicActions.goToSubmitPageUsingMainMenuAction.doAction(context);
 
-		PreselectOrgPageActions.selectOrgFromConfigAction.doAction(context);
+		PreselectOrgPageActions.selectOrgNomemberUserFromConfigAction.doAction(context);
 		PreselectOrgPageActions.requestEditorRightsAction.doAction(context);
 		BasicChecks.successfulMessageCheck.doAction(context);
 
@@ -130,7 +130,7 @@ public class UserAndOrganizationTest extends AbstractHdxSeleniumTest{
 		LoginActions.loginAsNewUserAction.doAction(context);
 		BasicActions.goToSubmitPageUsingMainMenuAction.doAction(context);
 
-		PreselectOrgPageActions.selectOrgFromConfigAction.doAction(context);
+		PreselectOrgPageActions.selectOrgNomemberUserFromConfigAction.doAction(context);
 		DatasetFormPageChecks.newDatasetFormRenderedCheck.doAction(context);
 		LoginActions.logoutAction.doAction(context);
 	}

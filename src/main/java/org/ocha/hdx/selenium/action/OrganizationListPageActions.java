@@ -7,20 +7,20 @@ import org.ocha.hdx.selenium.util.ContextConstants;
 
 public class OrganizationListPageActions {
 	public static IAction searchForOrgFromConfigAction  = context -> {
-		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
+		final String orgName = Config.getOrgNameForNomemberUser().toLowerCase();
 		context.put(ContextConstants.ORG_NAME, orgName);
 		OrganizationListPageInteraction.searchForOrgInteraction.doAction(context);
 
 	};
 	public static IAction viewOrgFromConfigAction = context -> {
-		final String orgName = Config.getOrgNameForNewUser();
+		final String orgName = Config.getOrgNameForNomemberUser();
 		context.put(ContextConstants.ORG_NAME, orgName.toLowerCase());
 		OrganizationListPageInteraction.viewOrgInteraction.doAction(context);
 
 	};
 
 	public static IAction viewOrgFromConfigByUrlAction = context -> {
-		final String orgName = Config.getOrgNameForNewUser().toLowerCase();
+		final String orgName = Config.getOrgNameForNomemberUser().toLowerCase();
 		context.put(ContextConstants.ORG_NAME, orgName);
 
 		final String url = Config.getDomainWithHttp();

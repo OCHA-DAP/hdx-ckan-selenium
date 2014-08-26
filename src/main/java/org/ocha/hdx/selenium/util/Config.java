@@ -36,23 +36,37 @@ public class Config {
 		return prop.getProperty("base.url") ;
 	}
 
-	public static String getOrgNameForNewUser(){
-		return prop.getProperty("user.new.org") ;
-
+	public static String getOrgNameForNomemberUser(){
+		return prop.getProperty("user.nomember.org") ;
 	}
 
-	public static String getNewUsername() {
-		return prop.getProperty("user.new.username") ;
+	public static String getOrgNameForEditorUser(){
+		return prop.getProperty("user.editor.org") ;
 	}
 
-	public static String getNewUserPassword() {
-		return prop.getProperty("user.new.password") ;
+	public static String getNomemberUsername() {
+		return prop.getProperty("user.nomember.username") ;
+	}
+
+	public static String getNomemberUserPassword() {
+		return prop.getProperty("user.nomember.password") ;
+	}
+
+	public static String getEditorUsername() {
+		return prop.getProperty("user.editor.username") ;
+	}
+
+	public static String getEditorDatasetTitle() {
+		return prop.getProperty("user.editor.dataset.title") ;
+	}
+
+	public static String getEditorUserPassword() {
+		return prop.getProperty("user.editor.password") ;
 	}
 
 	public static String getSysadminUsername() {
 		return prop.getProperty("sysadmin.username") ;
 	}
-
 
 	public static String getSysadminPassword() {
 		return prop.getProperty("sysadmin.password") ;

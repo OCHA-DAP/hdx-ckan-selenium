@@ -1,9 +1,13 @@
 base.url=http://localhost:5000/
 base.non_reversable_actions = false
 
-user.new.username=newuser
-user.new.password=password
-user.new.org=UNAGO
+user.nomember.username=newuser
+user.nomember.password=password
+user.nomember.org=UNAGO
+
+user.editor.username=editor
+user.editor.password=password
+user.editor.org=ocha-colombia
 
 sysadmin.username=sysadmin
 sysadmin.password=password
