@@ -56,6 +56,10 @@ public class Config {
 		return prop.getProperty("user.editor.username") ;
 	}
 
+	public static String getEditorDatasetTitle() {
+		return prop.getProperty("user.editor.dataset.title") ;
+	}
+
 	public static String getEditorUserPassword() {
 		return prop.getProperty("user.editor.password") ;
 	}

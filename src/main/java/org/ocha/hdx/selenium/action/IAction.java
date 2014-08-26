@@ -11,4 +11,11 @@ import java.util.Map;
  */
 public interface IAction {
 	void doAction(Map<String,Object> context);
+
+	default void doAction(final Map<String,Object> context, final String key, final Object value){
+		if(key !=null && value!=null){
+			context.put(key,value);
+		}
+		doAction(context);
+	}
 }

@@ -14,4 +14,5 @@ public class SelectorConstants {
 	public final static String MEMBER_ROLE = "mx-member-role";
 
 	public final static String NEXT_STEP_DATASET_CREATION = "onepage_submit";
+
 }

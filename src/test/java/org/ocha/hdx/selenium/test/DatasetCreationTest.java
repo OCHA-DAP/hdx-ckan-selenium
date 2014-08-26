@@ -15,6 +15,7 @@ import org.ocha.hdx.selenium.action.LoginActions;
 import org.ocha.hdx.selenium.action.PreselectOrgPageActions;
 import org.ocha.hdx.selenium.check.DatasetCreationChecks;
 import org.ocha.hdx.selenium.check.DatasetFormPageChecks;
+import org.ocha.hdx.selenium.util.DatasetConstants;
 
 /**
  * @author Dan Mihaila
@@ -63,9 +64,24 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		DatasetCreationActions.nextAddDataAction.doAction(context);
 		DatasetCreationChecks.countryErrorCheck.doAction(context);
 
-		//add country
-		DatasetCreationActions.addCountryAction.doAction(context);
+		//add&check country Peru
+		DatasetCreationActions.addCountryAction.doAction(context, DatasetConstants.COUNTRY_ID, "per");
+		DatasetCreationChecks.addedCountryCheck.doAction(context, DatasetConstants.EL_COUNTRY_ID, DatasetConstants.ADDED_COUNTRY_ITEM_PREFIX+"per");
 
+		//remove&check country Peru
+		DatasetCreationActions.removeCountryAction.doAction(context, DatasetConstants.COUNTRY_ID, "per");
+		DatasetCreationChecks.removedCountryCheck.doAction(context, DatasetConstants.EL_COUNTRY_ID, DatasetConstants.ADDED_COUNTRY_ITEM_PREFIX+"per");
+
+		//add&check country Bolivia
+		DatasetCreationActions.addCountryAction.doAction(context, DatasetConstants.COUNTRY_ID, "bol");
+		DatasetCreationChecks.addedCountryCheck.doAction(context, DatasetConstants.EL_COUNTRY_ID, DatasetConstants.ADDED_COUNTRY_ITEM_PREFIX+"bol");
+
+		//add&check country Peru
+		DatasetCreationActions.addCountryAction.doAction(context, DatasetConstants.COUNTRY_ID, "per");
+		DatasetCreationChecks.addedCountryCheck.doAction(context, DatasetConstants.EL_COUNTRY_ID, DatasetConstants.ADDED_COUNTRY_ITEM_PREFIX+"per");
+
+		DatasetCreationActions.fillFormFieldsAction.doAction(context);
+		DatasetCreationActions.nextAddDataAction.doAction(context);
 
 
 		logger.info("Create dataset page ...");
