@@ -44,15 +44,17 @@ public class GenericFind {
 
 	public WebElement byCSSSelectorAndBodyContaining(final String selector, final String containedValue) {
 		final List<WebElement> menuItems = this.driver.findElements(By.cssSelector(selector));
-		final Stream<WebElement> dataStream = menuItems.stream().filter(
-				item ->  {
-					final String body = item.getText().trim();
-					if ( body != null ) {
-						return body.toLowerCase().contains(containedValue.toLowerCase());
-					}
-					return false;
-				}
-				); 
+		final Stream<WebElement> dataStream = menuItems.stream()
+				.filter(item -> item.isDisplayed())
+				.filter(
+						item ->  {
+							final String body = item.getText().trim();
+							if ( body != null && "".compareTo(body)!=0 ) {
+								return body.toLowerCase().contains(containedValue.toLowerCase());
+							}
+							return false;
+						}
+						); 
 		return dataStream.findFirst().orElse(null);
 	}
 }

@@ -3,16 +3,19 @@
  */
 package org.ocha.hdx.selenium.interaction;
 
+import static org.junit.Assert.assertNull;
 import static org.ocha.hdx.selenium.util.Util.FF;
 import static org.ocha.hdx.selenium.util.Util.REMOVE;
 import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.apache.log4j.Logger;
+import org.ocha.hdx.selenium.check.DatasetCreationChecks;
 import org.ocha.hdx.selenium.util.DatasetConstants;
 import org.ocha.hdx.selenium.util.GenericFind;
 import org.ocha.hdx.selenium.util.SelectorConstants;
 import org.ocha.hdx.selenium.util.Util;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * @author Dan Mihaila
@@ -108,7 +111,6 @@ public class DatasetCreationInteraction {
 	};
 
 	public static IInteraction datasetMethodologyInteraction = context -> {
-
 		final String selector = "#meth_other_radio";
 		WD(context).findElement(By.cssSelector(selector)).click();
 		final String methTxt = REMOVE(context, DatasetConstants.METHODOLOGY, String.class);
@@ -118,13 +120,33 @@ public class DatasetCreationInteraction {
 	};
 
 	public static IInteraction datasetCaveatsInteraction = context -> {
-
-		//final String selector = "#field_caveats";
-		//WD(context).findElement(By.cssSelector(selector)).click();
 		final String caveatsTxt = REMOVE(context, DatasetConstants.CAVEATS, String.class);
 		WD(context).findElement(By.id("field-caveats")).sendKeys(caveatsTxt);
 
-		logger.info("clicked on methodology other");
+		logger.info("filled in the caveats");
+	};
+
+
+	public static IInteraction datasetCheckOrganisationInteraction = context -> {
+		DatasetCreationChecks.datasetSelectedOrganisationCheck.doAction(context);
+
+		logger.info("checking Organisation");
+	};
+
+	public static IInteraction datasetDatesInteraction = context -> {
+		WD(context).findElement(By.id("ui_date_range2")).click();
+		WD(context).findElement(By.id("ui_date_range1")).click();
+		String selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "15").click();
+
+		WD(context).findElement(By.id("ui_date_range2")).click();
+		selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+		final WebElement endDateEl = FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "10");
+		assertNull(endDateEl);
+
+		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "20").click();
+
+		logger.info("filled in the caveats");
 	};
 
 }
