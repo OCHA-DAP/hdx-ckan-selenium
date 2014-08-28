@@ -16,7 +16,6 @@ public class DatasetCreationActions {
 	private static Logger logger = Logger.getLogger(DatasetCreationActions.class);
 
 	public static IAction nextAddDataAction = context -> {
-
 		DatasetCreationInteraction.clickOnNextAddDataInteraction.doAction(context);
 	};
 
@@ -33,11 +32,12 @@ public class DatasetCreationActions {
 		DatasetCreationActions.datasetSourceAction.doAction(context);
 		DatasetCreationActions.datasetDescriptionAction.doAction(context);
 		DatasetCreationActions.datasetLicenseAction.doAction(context);
-		//		DatasetCreationActions.datasetOrganisationAction.doAction(context);
+		DatasetCreationActions.datasetCheckOrganisationAction.doAction(context);
 		DatasetCreationActions.datasetVisibilityAction.doAction(context);
 		DatasetCreationActions.datasetMethodologyAction.doAction(context);
 		//		DatasetCreationActions.datasetTagsAction.doAction(context);
 		DatasetCreationActions.datasetCaveatsAction.doAction(context);
+		DatasetCreationActions.datasetDatesAction.doAction(context);
 	};
 
 	public static IAction datasetTitleAction = context -> {
@@ -82,6 +82,14 @@ public class DatasetCreationActions {
 
 	public static IAction datasetCaveatsAction = context -> {
 		DatasetCreationInteraction.datasetCaveatsInteraction.doAction(context, DatasetConstants.CAVEATS, DatasetConstants.TEXT_SHORT);
+	};
+
+	public static IAction datasetCheckOrganisationAction = context -> {
+		DatasetCreationInteraction.datasetCheckOrganisationInteraction.doAction(context);
+	};
+
+	public static IAction datasetDatesAction = context -> {
+		DatasetCreationInteraction.datasetDatesInteraction.doAction(context);
 	};
 
 }
