@@ -137,13 +137,17 @@ public class DatasetCreationInteraction {
 		WD(context).findElement(By.id("ui_date_range2")).click();
 		WD(context).findElement(By.id("ui_date_range1")).click();
 		String selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+
+		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "15").click();
 
 		WD(context).findElement(By.id("ui_date_range2")).click();
 		selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		final WebElement endDateEl = FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "10");
 		assertNull(endDateEl);
 
+		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "20").click();
 
 		logger.info("filled in the caveats");
