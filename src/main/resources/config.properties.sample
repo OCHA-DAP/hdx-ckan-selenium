@@ -9,5 +9,7 @@ user.editor.username=editor
 user.editor.password=password
 user.editor.org=ocha-colombia
 
+user.editor.dataset.title = Selenium New Dataset
+
 sysadmin.username=sysadmin
 sysadmin.password=password
