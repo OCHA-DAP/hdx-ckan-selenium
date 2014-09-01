@@ -208,21 +208,6 @@ public class DatasetCreationInteraction {
 		selector="field-name";
 		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, "value", null, 10);
 
-		//		selector = "mx-save-another";
-		//		WD(context).findElement(By.id(selector)).click();
-		//
-		//		selector = "error-license";
-		//		assertNotNull(WD(context).findElement(By.id(selector)));
-		//
-		//		selector = "field-name";
-		//		WD(context).findElement(By.id(selector)).sendKeys("Airports in Venezuela");
-		//
-		//		selector = "field-description";
-		//		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
-		//
-		//		selector = "mx-save-another";
-		//		WD(context).findElement(By.id(selector)).click();
-
 		logger.info("uploading a file");
 	};
 

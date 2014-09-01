@@ -44,6 +44,7 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 
 		this.createDatasetStep1(context);
 
+		this.createDatasetStep2(context);
 	}
 
 	private void createDatasetStep1(final Map<String, Object> context) {
@@ -83,14 +84,20 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		DatasetCreationActions.fillFormFieldsAction.doAction(context);
 		DatasetCreationActions.nextAddDataAction.doAction(context);
 
+		logger.info("Create dataset END step 1");
+	}
 
+	private void createDatasetStep2(final Map<String, Object> context) {
+		/** 
+		 * create Dataset Step 2
+		 */
+		logger.info("Create dataset step 2");
 
+		DatasetCreationActions.fillFormResourcesAction.doAction(context);
 
-		logger.info("Create dataset page ...");
-
+		logger.info("Create dataset step 2");
 		LoginActions.logoutAction.doAction(context);
 
 	}
-
 
 }
