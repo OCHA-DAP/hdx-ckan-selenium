@@ -35,6 +35,23 @@ public class GenericFind {
 		return dataStream.findFirst().orElse(null);
 	}
 
+	public WebElement byCSSSelectorAndAttributeNotEmpty(final String selector, final String attributeName) {
+		final List<WebElement> menuItems = this.driver.findElements(By.cssSelector(selector));
+		final Stream<WebElement> dataStream = menuItems.stream()
+				.filter(item -> item.isDisplayed())
+				.filter(
+						item ->  {
+							final String attr = item.getAttribute(attributeName);
+							if ( attr != null ) {
+								logger.debug("Attribute value not empty" );
+								return true;
+							}
+							return false;
+						}
+						); 
+		return dataStream.findFirst().orElse(null);
+	}
+
 	public WebElement byCSSSelectorAndDisplayed(final String selector) {
 		final List<WebElement> menuItems = this.driver.findElements(By.cssSelector(selector));
 		return menuItems.stream()

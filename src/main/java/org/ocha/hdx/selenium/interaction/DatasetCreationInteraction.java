@@ -3,6 +3,7 @@
  */
 package org.ocha.hdx.selenium.interaction;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.ocha.hdx.selenium.util.Util.FF;
 import static org.ocha.hdx.selenium.util.Util.REMOVE;
@@ -15,6 +16,7 @@ import org.ocha.hdx.selenium.util.GenericFind;
 import org.ocha.hdx.selenium.util.SelectorConstants;
 import org.ocha.hdx.selenium.util.Util;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -44,7 +46,7 @@ public class DatasetCreationInteraction {
 		final String attrName = "data-value";
 		//adding one country, which has the code in context
 		final String attrValue = REMOVE(context, DatasetConstants.COUNTRY_ID, String.class);
-		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, attrName, attrValue);
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, attrName, attrValue, DatasetConstants.DELAY);
 		FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(selector, attrName, attrValue).click();
 		logger.info("clicked on country selector");
 	};
@@ -136,21 +138,92 @@ public class DatasetCreationInteraction {
 	public static IInteraction datasetDatesInteraction = context -> {
 		WD(context).findElement(By.id("ui_date_range2")).click();
 		WD(context).findElement(By.id("ui_date_range1")).click();
+
 		String selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
-
-		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "15").click();
-
 		WD(context).findElement(By.id("ui_date_range2")).click();
+
 		selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
-		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		final WebElement endDateEl = FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "10");
 		assertNull(endDateEl);
 
-		//Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
 		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "20").click();
 
 		logger.info("filled in the caveats");
+	};
+
+	//datasetResourceURLAction
+
+	public static IInteraction datasetResourceURLInteraction = context -> {
+		String selector = "field-link-upload";
+		WD(context).findElement(By.id(selector)).click();
+
+		selector = "field-url";
+		WD(context).findElement(By.id(selector)).sendKeys("http://ourairports.com/countries/VE/airports.csv");
+
+		selector = "mx-save-another";
+		WD(context).findElement(By.id(selector)).click();
+
+		selector = "error-license";
+		assertNotNull(WD(context).findElement(By.id(selector)));
+
+		selector = "field-name";
+		WD(context).findElement(By.id(selector)).sendKeys("Airports in Venezuela");
+
+		selector = "field-description";
+		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
+
+		selector="field-resource-type-api";
+		WD(context).findElement(By.id(selector)).click();
+
+		selector = "mx-save-another";
+		WD(context).findElement(By.id(selector)).click();
+
+		logger.info("adding an url as resource");
+	};
+
+	public static IInteraction datasetResourceFileInteraction = context -> {
+		//final WebElement tf = WD(context).findElement(By.id(selector));
+		//final WebElement tfp = tf.findElement(By.xpath("//..")).findElement(By.xpath("//.."));
+		if(WD(context) instanceof JavascriptExecutor){
+			final JavascriptExecutor je = (JavascriptExecutor) WD(context);
+			try {
+				je.executeScript("file_upload_selected()");	
+			} catch (final Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		String selector = "mx-type-file";
+		//		WD(context).findElement(By.id(selector)).click();
+
+
+		selector="field-resource-type-upload";
+		Util.wait(context, 3);
+		WD(context).findElement(By.id(selector)).click();
+
+		selector = "mx-file";
+		WD(context).findElement(By.id(selector)).sendKeys("/Users/Dan/Desktop/photo.jpg");
+
+		selector="field-name";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, "value", null, 10);
+
+		//		selector = "mx-save-another";
+		//		WD(context).findElement(By.id(selector)).click();
+		//
+		//		selector = "error-license";
+		//		assertNotNull(WD(context).findElement(By.id(selector)));
+		//
+		//		selector = "field-name";
+		//		WD(context).findElement(By.id(selector)).sendKeys("Airports in Venezuela");
+		//
+		//		selector = "field-description";
+		//		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
+		//
+		//		selector = "mx-save-another";
+		//		WD(context).findElement(By.id(selector)).click();
+
+		logger.info("uploading a file");
 	};
 
 }
