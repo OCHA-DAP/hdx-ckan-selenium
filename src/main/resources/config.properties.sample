@@ -13,3 +13,6 @@ user.editor.dataset.title = Selenium New Dataset
 
 sysadmin.username=sysadmin
 sysadmin.password=password
+
+url.test = http://localhost:5000/dataset/new_resource/selenium-new-dataset1408978804027
+url.file = /Users/test.xlsx
