@@ -56,6 +56,14 @@ public class Config {
 		return prop.getProperty("user.editor.username") ;
 	}
 
+	public static String getURLTest() {
+		return prop.getProperty("url.test") ;
+	}
+
+	public static String getURLFile() {
+		return prop.getProperty("url.file") ;
+	}
+
 	public static String getEditorDatasetTitle() {
 		return prop.getProperty("user.editor.dataset.title") ;
 	}

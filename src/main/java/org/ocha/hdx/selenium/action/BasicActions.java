@@ -30,4 +30,9 @@ public class BasicActions {
 	public static IAction goToSubmitPageUsingMainMenuAction = context -> BasicInteractions.clickOnSubmitInMainMenuInteraction
 			.doAction(context);
 
+	public static IAction goToURLPageAction = context -> {
+		context.put(ContextConstants.DESTINATION_URL, Config.getURLTest());
+		BasicInteractions.navigateToUrlInteraction.doAction(context);
+	};
+
 }

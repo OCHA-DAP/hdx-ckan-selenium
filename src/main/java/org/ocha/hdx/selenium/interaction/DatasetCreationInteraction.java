@@ -11,12 +11,12 @@ import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.apache.log4j.Logger;
 import org.ocha.hdx.selenium.check.DatasetCreationChecks;
+import org.ocha.hdx.selenium.util.Config;
 import org.ocha.hdx.selenium.util.DatasetConstants;
 import org.ocha.hdx.selenium.util.GenericFind;
 import org.ocha.hdx.selenium.util.SelectorConstants;
 import org.ocha.hdx.selenium.util.Util;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -155,7 +155,8 @@ public class DatasetCreationInteraction {
 	//datasetResourceURLAction
 
 	public static IInteraction datasetResourceURLInteraction = context -> {
-		String selector = "field-link-upload";
+
+		String selector = "mx-type-url";
 		WD(context).findElement(By.id(selector)).click();
 
 		selector = "field-url";
@@ -173,9 +174,6 @@ public class DatasetCreationInteraction {
 		selector = "field-description";
 		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
 
-		selector="field-resource-type-api";
-		WD(context).findElement(By.id(selector)).click();
-
 		selector = "mx-save-another";
 		WD(context).findElement(By.id(selector)).click();
 
@@ -183,30 +181,24 @@ public class DatasetCreationInteraction {
 	};
 
 	public static IInteraction datasetResourceFileInteraction = context -> {
-		//final WebElement tf = WD(context).findElement(By.id(selector));
-		//final WebElement tfp = tf.findElement(By.xpath("//..")).findElement(By.xpath("//.."));
-		if(WD(context) instanceof JavascriptExecutor){
-			final JavascriptExecutor je = (JavascriptExecutor) WD(context);
-			try {
-				je.executeScript("file_upload_selected()");	
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		String selector = "mx-type-file";
-		//		WD(context).findElement(By.id(selector)).click();
 
 
-		selector="field-resource-type-upload";
-		Util.wait(context, 3);
+		String selector = "#mx-type-file";
+		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, 10);
+		selector = "mx-type-file";
 		WD(context).findElement(By.id(selector)).click();
 
 		selector = "mx-file";
-		WD(context).findElement(By.id(selector)).sendKeys("/Users/Dan/Desktop/photo.jpg");
+		WD(context).findElement(By.id(selector)).sendKeys(Config.getURLFile());
 
-		selector="field-name";
+		selector="#field-name";
 		Util.checkAndWaitIsLoadedByCSSSelector(context, selector, "value", null, 10);
+
+		selector="field-description";
+		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
+
+		selector = "mx-save-dataset";
+		WD(context).findElement(By.id(selector)).click();
 
 		logger.info("uploading a file");
 	};

@@ -80,8 +80,8 @@ public class DatasetCreationActions {
 
 
 	public static IAction fillFormResourcesAction = context -> {
+		DatasetCreationActions.datasetResourceURLAction.doAction(context);
 		DatasetCreationActions.datasetResourceFileAction.doAction(context);
-		//		DatasetCreationActions.datasetResourceURLAction.doAction(context);
 	};
 
 	public static IAction datasetResourceURLAction = context -> {

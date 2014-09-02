@@ -42,9 +42,16 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 
 		final Map<String,Object> context = this.instantiateContext();
 
+		BasicActions.goToHomePageAction.doAction(context);
+
+		BasicActions.goToLoginPageUsingMainMenuAction.doAction(context);
+		LoginActions.loginAsExistingUserAction.doAction(context);
+
 		this.createDatasetStep1(context);
 
 		this.createDatasetStep2(context);
+
+		LoginActions.logoutAction.doAction(context);
 	}
 
 	private void createDatasetStep1(final Map<String, Object> context) {
@@ -52,11 +59,6 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		 * create Dataset Step 1
 		 */
 		logger.info("Create dataset step 1");
-
-		BasicActions.goToHomePageAction.doAction(context);
-
-		BasicActions.goToLoginPageUsingMainMenuAction.doAction(context);
-		LoginActions.loginAsExistingUserAction.doAction(context);
 
 		BasicActions.goToSubmitPageUsingMainMenuAction.doAction(context);
 
@@ -96,8 +98,6 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		DatasetCreationActions.fillFormResourcesAction.doAction(context);
 
 		logger.info("Create dataset step 2");
-		LoginActions.logoutAction.doAction(context);
-
 	}
 
 }

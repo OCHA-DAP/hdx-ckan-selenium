@@ -5,9 +5,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Util {
@@ -94,8 +96,18 @@ public class Util {
 		checkAndWaitIsLoadedByCSSSelector(context, selector, null, null, delay);
 	}
 
-	public static void wait(final Map<String, Object> context, final int delay) {
-		new WebDriverWait(WD(context), delay);
+	public static void waitUntilClickable(final Map<String, Object> context, final String selector, final int delay) {
+		//new WebDriverWait(WD(context), delay);
+		//ExpectedConditions.elementToBeClickable
+		//		new WebDriverWait(WD(context), delay)
+		//		.until(ExpectedConditions.presenceOfElementLocated(By.id("none")));
+		try {
+			final WebDriverWait wait = new WebDriverWait(WD(context), delay);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id(selector)));
+		} catch (final Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 }
