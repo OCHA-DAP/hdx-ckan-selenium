@@ -5,9 +5,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Util {
@@ -45,7 +47,7 @@ public class Util {
 		return result;
 
 	}
-		
+
 	public static String REMOVE_STRING(final Map<String,Object> context, final String key) {
 		return REMOVE(context, key, String.class);
 	}
@@ -57,15 +59,20 @@ public class Util {
 	 * @param attributeName
 	 * @param containedValue
 	 */
-	public static void checkAndWaitIsLoadedByCSSSelector(final Map<String, Object> context, final String selector, final String attributeName, final String containedValue) {
-		new WebDriverWait(WD(context),5).until((ExpectedCondition<Boolean>) d -> 
+	public static void checkAndWaitIsLoadedByCSSSelector(final Map<String, Object> context, final String selector, final String attributeName, final String containedValue, final int delay) {
+		new WebDriverWait(WD(context),delay).until((ExpectedCondition<Boolean>) d -> 
 		{
 			logger.info("check if js is completely loaded");
 			WebElement searchedEl = null;
 			if(attributeName == null) {
 				searchedEl = FF(context, GenericFind.class).byCSSSelectorAndDisplayed(selector);
 			} else {
-				searchedEl = FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(selector, attributeName, containedValue);
+				if(containedValue!=null){
+					searchedEl = FF(context, GenericFind.class).byCSSSelectorAndAttributeContaining(selector, attributeName, containedValue);
+				}
+				else{
+					searchedEl = FF(context, GenericFind.class).byCSSSelectorAndAttributeNotEmpty(selector, attributeName);
+				}
 			}
 			return searchedEl!=null? true: false;
 		});
@@ -77,7 +84,30 @@ public class Util {
 	 * @param selector
 	 */
 	public static void checkAndWaitIsLoadedByCSSSelector(final Map<String, Object> context, final String selector) {
-		checkAndWaitIsLoadedByCSSSelector(context, selector, null, null);
+		checkAndWaitIsLoadedByCSSSelector(context, selector, null, null, DatasetConstants.DELAY);
+	}
+
+	/**
+	 * Method that waits for "delay" seconds or until a specific element is loaded and displayed.
+	 * @param context
+	 * @param selector
+	 */
+	public static void checkAndWaitIsLoadedByCSSSelector(final Map<String, Object> context, final String selector, final int delay) {
+		checkAndWaitIsLoadedByCSSSelector(context, selector, null, null, delay);
+	}
+
+	public static void waitUntilClickable(final Map<String, Object> context, final String selector, final int delay) {
+		//new WebDriverWait(WD(context), delay);
+		//ExpectedConditions.elementToBeClickable
+		//		new WebDriverWait(WD(context), delay)
+		//		.until(ExpectedConditions.presenceOfElementLocated(By.id("none")));
+		try {
+			final WebDriverWait wait = new WebDriverWait(WD(context), delay);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id(selector)));
+		} catch (final Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 }
