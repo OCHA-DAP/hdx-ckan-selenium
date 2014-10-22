@@ -10,7 +10,6 @@ import static org.ocha.hdx.selenium.util.Util.REMOVE;
 import static org.ocha.hdx.selenium.util.Util.WD;
 
 import org.apache.log4j.Logger;
-import org.ocha.hdx.selenium.check.DatasetCreationChecks;
 import org.ocha.hdx.selenium.util.Config;
 import org.ocha.hdx.selenium.util.DatasetConstants;
 import org.ocha.hdx.selenium.util.GenericFind;
@@ -129,11 +128,11 @@ public class DatasetCreationInteraction {
 	};
 
 
-	public static IInteraction datasetCheckOrganisationInteraction = context -> {
-		DatasetCreationChecks.datasetSelectedOrganisationCheck.doAction(context);
-
-		logger.info("checking Organisation");
-	};
+//	public static IInteraction datasetCheckOrganisationInteraction = context -> {
+//		DatasetCreationChecks.datasetSelectedOrganisationCheck.doAction(context);
+//
+//		logger.info("checking Organisation");
+//	};
 
 	public static IInteraction datasetDatesInteraction = context -> {
 		WD(context).findElement(By.id("ui_date_range2")).click();

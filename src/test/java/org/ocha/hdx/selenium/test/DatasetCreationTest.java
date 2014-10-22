@@ -83,7 +83,21 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 		DatasetCreationActions.addCountryAction.doAction(context, DatasetConstants.COUNTRY_ID, "per");
 		DatasetCreationChecks.addedCountryCheck.doAction(context, DatasetConstants.EL_COUNTRY_ID, DatasetConstants.ADDED_COUNTRY_ITEM_PREFIX+"per");
 
-		DatasetCreationActions.fillFormFieldsAction.doAction(context);
+//		DatasetCreationActions.fillFormFieldsAction.doAction(context);
+
+        DatasetCreationActions.datasetTitleAction.doAction(context);
+        DatasetCreationActions.datasetSourceAction.doAction(context);
+        DatasetCreationActions.datasetDescriptionAction.doAction(context);
+        DatasetCreationActions.datasetLicenseAction.doAction(context);
+//        DatasetCreationActions.datasetCheckOrganisationAction.doAction(context);
+        DatasetCreationChecks.datasetSelectedOrganisationCheck.doAction(context);
+        logger.info("checking Organisation");
+        DatasetCreationActions.datasetVisibilityAction.doAction(context);
+        DatasetCreationActions.datasetMethodologyAction.doAction(context);
+        //		DatasetCreationActions.datasetTagsAction.doAction(context);
+        DatasetCreationActions.datasetCaveatsAction.doAction(context);
+        DatasetCreationActions.datasetDatesAction.doAction(context);
+
 		DatasetCreationActions.nextAddDataAction.doAction(context);
 
 		logger.info("Create dataset END step 1");
