@@ -15,4 +15,6 @@ public class SelectorConstants {
 
 	public final static String NEXT_STEP_DATASET_CREATION = "onepage_submit";
 
+    public final static String SAVE_DATASET = "mx-save-dataset";
+
 }

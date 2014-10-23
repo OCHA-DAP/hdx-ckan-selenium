@@ -26,7 +26,6 @@ public class DatasetListPageActions {
 	public static IAction searchForAirportsInZambiaAction = context -> {
 		context.put(ContextConstants.TEXT_TO_WRITE, "Airports in Zambia");
 		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
-
 	};
 	
 	public static IAction searchForPakistanBaselineAction = context -> {

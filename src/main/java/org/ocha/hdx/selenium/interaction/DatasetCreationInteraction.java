@@ -17,6 +17,8 @@ import org.ocha.hdx.selenium.util.SelectorConstants;
 import org.ocha.hdx.selenium.util.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author Dan Mihaila
@@ -29,12 +31,16 @@ public class DatasetCreationInteraction {
 
 
 	public static IInteraction clickOnNextAddDataInteraction = context -> {
-
 		WD(context).findElement(By.id(SelectorConstants.NEXT_STEP_DATASET_CREATION)).click();
 		logger.info("click on Next Add Data");
 	};
 
-	public static IInteraction clickSelectorCountryInteraction = context -> {
+    public static IInteraction clickOnSaveInteraction = context -> {
+        WD(context).findElement(By.id(SelectorConstants.SAVE_DATASET)).click();
+        logger.info("click on Next Add Data");
+    };
+
+    public static IInteraction clickSelectorCountryInteraction = context -> {
 
 		String selector = "div.select2-container a.select2-choice";
 		Util.checkAndWaitIsLoadedByCSSSelector(context, selector);
@@ -59,11 +65,17 @@ public class DatasetCreationInteraction {
 	};
 
 	public static IInteraction datasetTitleInteraction = context -> {
-		final String title = REMOVE(context, DatasetConstants.TITLE, String.class);
+		final String title = (String) context.get(DatasetConstants.TITLE);
 		WD(context).findElement(By.id("field-title")).sendKeys(title);
 	};
 
-	public static IInteraction datasetSourceInteraction = context -> {
+    public static IInteraction datasetURLInteraction = context -> {
+        String url = WD(context).findElement(By.cssSelector(".slug-preview .slug-preview-value")).getText();
+        context.put(DatasetConstants.URL, url);
+
+    };
+
+    public static IInteraction datasetSourceInteraction = context -> {
 		final String src = REMOVE(context, DatasetConstants.SOURCE, String.class);
 		WD(context).findElement(By.id("field-dataset_source")).sendKeys(src);
 	};
@@ -138,15 +150,26 @@ public class DatasetCreationInteraction {
 		WD(context).findElement(By.id("ui_date_range2")).click();
 		WD(context).findElement(By.id("ui_date_range1")).click();
 
-		String selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
-		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "15").click();
+		final String selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+
+        new WebDriverWait(WD(context),5).until(
+                (ExpectedCondition<Boolean>) d -> {
+                    final WebElement element = d.findElement(By.cssSelector(selector));
+                    return element != null && element.isDisplayed();
+                }
+        );
+        FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "15").click();
 		WD(context).findElement(By.id("ui_date_range2")).click();
 
-		selector = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
-		final WebElement endDateEl = FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "10");
+		final String selector2 = "#ui-datepicker-div table.ui-datepicker-calendar tbody tr td a.ui-state-default";
+
+        new WebDriverWait(WD(context),5).until(
+                (ExpectedCondition<Boolean>) d -> d.findElement(By.cssSelector(selector2)) != null
+        );
+		final WebElement endDateEl = FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector2, "10");
 		assertNull(endDateEl);
 
-		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector, "20").click();
+		FF(context, GenericFind.class).byCSSSelectorAndBodyContaining(selector2, "20").click();
 
 		logger.info("filled in the caveats");
 	};
@@ -196,8 +219,15 @@ public class DatasetCreationInteraction {
 		selector="field-description";
 		WD(context).findElement(By.id(selector)).sendKeys(DatasetConstants.TEXT_LONG);
 
-		selector = "mx-save-dataset";
-		WD(context).findElement(By.id(selector)).click();
+        new WebDriverWait(WD(context),5).until(
+                (ExpectedCondition<Boolean>) d -> {
+                    final WebElement element = d.findElement(By.cssSelector("#field-url"));
+                    return element != null && element.getAttribute("value").startsWith(Config.getDomainWithHttp());
+                }
+        );
+
+//		selector = "mx-save-dataset";
+//		WD(context).findElement(By.id(selector)).click();
 
 		logger.info("uploading a file");
 	};

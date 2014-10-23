@@ -14,11 +14,17 @@ public class DatasetConstants {
 
 	public final static String EL_COUNTRY_ID = "added_country_id";
 
-	public final static String COUNTRY_ID = "country_id";
+    public final static String DATASET_TITLE_CSS_SELECTOR = "h1.itemTitle";
+
+    public final static String ALERTS_ON_PAGE = ".alert.alert-error";
+
+    public final static String COUNTRY_ID = "country_id";
 
 	public final static String TITLE = "dataset_title";
 
-	public static final String DESCRIPTION = "dataset_description";
+    public final static String URL = "dataset_url";
+
+    public static final String DESCRIPTION = "dataset_description";
 
 	public static final String SOURCE = "dataset_source";
 

@@ -30,13 +30,28 @@ public class DatasetCreationChecks {
 		BasicChecks.errorMessageCheck.doAction(context);
 	};
 
-	public static ICheckAction addedCountryCheck = context -> {
-		final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
-		final WebElement addedCountry = WD(context).findElement(By.id(countryID));
-		assertNotNull(addedCountry);
-	};
+    public static ICheckAction unauthorizedDatasetAccess = context -> {
+        final WebElement alert = WD(context).findElement(By.cssSelector(DatasetConstants.ALERTS_ON_PAGE));
+        assertNotNull(alert);
+        assertNotNull(alert.getText());
+        assertTrue(alert.getText().startsWith("Unauthorized to read package"));
+    };
 
-	public static ICheckAction removedCountryCheck = context -> {
+    public static ICheckAction addedCountryCheck = context -> {
+        final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
+        final WebElement addedCountry = WD(context).findElement(By.id(countryID));
+        assertNotNull(addedCountry);
+    };
+
+    public static ICheckAction checkTitleIsCorrect = context -> {
+        final String title = (String) context.get(DatasetConstants.TITLE);
+        final WebElement addedCountry = WD(context).findElement(By.cssSelector(DatasetConstants.DATASET_TITLE_CSS_SELECTOR));
+        assertNotNull(addedCountry);
+        String existingTitle = addedCountry.getText();
+        assertEquals(title, existingTitle);
+    };
+
+    public static ICheckAction removedCountryCheck = context -> {
 		final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
 		WebElement addedCountry = null;
 
@@ -74,6 +89,9 @@ public class DatasetCreationChecks {
 		logger.info("Organization found in url is the selected in dropdown");
 
 	};
+
+
+
 
 
 

@@ -19,6 +19,10 @@ public class DatasetCreationActions {
 		DatasetCreationInteraction.clickOnNextAddDataInteraction.doAction(context);
 	};
 
+    public static IAction saveAction = context -> {
+        DatasetCreationInteraction.clickOnSaveInteraction.doAction(context);
+    };
+
 	public static IAction addCountryAction = context -> {
 		DatasetCreationInteraction.clickSelectorCountryInteraction.doAction(context);
 	};
@@ -43,6 +47,7 @@ public class DatasetCreationActions {
 	public static IAction datasetTitleAction = context -> {
 		final String title = Config.getEditorDatasetTitle() + System.currentTimeMillis();
 		DatasetCreationInteraction.datasetTitleInteraction.doAction(context, DatasetConstants.TITLE, title);
+        DatasetCreationInteraction.datasetURLInteraction.doAction(context);
 	};
 
 	public static IAction datasetSourceAction = context -> {
