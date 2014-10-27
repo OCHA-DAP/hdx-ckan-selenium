@@ -37,6 +37,13 @@ public class DatasetCreationChecks {
         assertTrue(alert.getText().startsWith("Unauthorized to read package"));
     };
 
+    public static ICheckAction unauthorizedDatasetFileAccess = context -> {
+        final WebElement error = WD(context).findElement(By.cssSelector("code.main-exception"));
+        assertNotNull(error);
+        assertNotNull(error.getText());
+        assertTrue(error.getText().startsWith("NotAuthorized"));
+    };
+
     public static ICheckAction addedCountryCheck = context -> {
         final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
         final WebElement addedCountry = WD(context).findElement(By.id(countryID));

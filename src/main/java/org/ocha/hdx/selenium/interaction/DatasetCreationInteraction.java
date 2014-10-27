@@ -221,10 +221,13 @@ public class DatasetCreationInteraction {
 
         new WebDriverWait(WD(context),5).until(
                 (ExpectedCondition<Boolean>) d -> {
-                    final WebElement element = d.findElement(By.cssSelector("#field-url"));
+                    final WebElement element = d.findElement(By.id("field-url"));
                     return element != null && element.getAttribute("value").startsWith(Config.getDomainWithHttp());
                 }
         );
+
+        String fileUrl = WD(context).findElement(By.id("field-url")).getAttribute("value");
+        context.put(DatasetConstants.FILE_URL, fileUrl);
 
 //		selector = "mx-save-dataset";
 //		WD(context).findElement(By.id(selector)).click();

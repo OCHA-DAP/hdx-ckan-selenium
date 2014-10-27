@@ -22,6 +22,8 @@ public class DatasetConstants {
 
 	public final static String TITLE = "dataset_title";
 
+    public final static String FILE_URL = "dataset_file_url";
+
     public final static String URL = "dataset_url";
 
     public static final String DESCRIPTION = "dataset_description";
