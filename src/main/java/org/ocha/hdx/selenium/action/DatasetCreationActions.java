@@ -23,7 +23,11 @@ public class DatasetCreationActions {
         DatasetCreationInteraction.clickOnSaveInteraction.doAction(context);
     };
 
-	public static IAction addCountryAction = context -> {
+    public static IAction getPreviewLinkAction = context -> {
+        DatasetCreationInteraction.getPreviewLinkInteraction.doAction(context);
+    };
+
+    public static IAction addCountryAction = context -> {
 		DatasetCreationInteraction.clickSelectorCountryInteraction.doAction(context);
 	};
 

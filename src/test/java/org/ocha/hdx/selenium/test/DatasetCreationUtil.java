@@ -88,6 +88,7 @@ public class DatasetCreationUtil {
 
 		DatasetCreationActions.fillFormResourcesAction.doAction(context);
         DatasetCreationActions.saveAction.doAction(context);
+        DatasetCreationActions.getPreviewLinkAction.doAction(context);
 
         logger.info("Create dataset step 2");
 	}

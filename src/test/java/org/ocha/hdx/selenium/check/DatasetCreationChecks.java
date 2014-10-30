@@ -44,6 +44,13 @@ public class DatasetCreationChecks {
         assertTrue(error.getText().startsWith("NotAuthorized"));
     };
 
+    public static ICheckAction unauthorizedDatasetPreviewAccess = context -> {
+        final WebElement login = WD(context).findElement(By.cssSelector("h1.page-heading"));
+        assertNotNull(login);
+        assertNotNull(login.getText());
+        assertTrue(login.getText().startsWith("Login"));
+    };
+
     public static ICheckAction addedCountryCheck = context -> {
         final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
         final WebElement addedCountry = WD(context).findElement(By.id(countryID));

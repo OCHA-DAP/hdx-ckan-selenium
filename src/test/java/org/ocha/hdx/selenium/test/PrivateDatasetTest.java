@@ -3,13 +3,9 @@ package org.ocha.hdx.selenium.test;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.ocha.hdx.selenium.action.BasicActions;
-import org.ocha.hdx.selenium.action.DatasetCreationActions;
-import org.ocha.hdx.selenium.action.DatasetListPageActions;
 import org.ocha.hdx.selenium.action.LoginActions;
-import org.ocha.hdx.selenium.check.BasicChecks;
 import org.ocha.hdx.selenium.check.DatasetCreationChecks;
 import org.ocha.hdx.selenium.interaction.BasicInteractions;
-import org.ocha.hdx.selenium.interaction.DatasetListPageInteractions;
 import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.DatasetConstants;
 
@@ -38,6 +34,7 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
         String title = (String) context.get(DatasetConstants.TITLE);
         String url = (String) context.get(DatasetConstants.URL);
         String fileUrl = (String) context.get(DatasetConstants.FILE_URL);
+        String previewUrl = (String) context.get(DatasetConstants.PREVIEW_URL);
 
 
         context.put(ContextConstants.DESTINATION_URL, "dataset/" + url);
@@ -55,13 +52,15 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
         BasicActions.goToHomePageAction.doAction(context);
         context.put(ContextConstants.DESTINATION_URL, "dataset/" + url);
         BasicActions.goToURLAddBaseURL.doAction(context);
-
         DatasetCreationChecks.unauthorizedDatasetAccess.doAction(context);
 
         context.put(ContextConstants.DESTINATION_URL, fileUrl);
         BasicInteractions.navigateToUrlInteraction.doAction(context);
-
         DatasetCreationChecks.unauthorizedDatasetFileAccess.doAction(context);
+
+        context.put(ContextConstants.DESTINATION_URL, previewUrl);
+        BasicInteractions.navigateToUrlInteraction.doAction(context);
+        DatasetCreationChecks.unauthorizedDatasetPreviewAccess.doAction(context);
 
         /**
          * Test 2 - New user tries to access the dataset - shouldn't be able to do it
@@ -72,13 +71,15 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
 
         context.put(ContextConstants.DESTINATION_URL, "dataset/" + url);
         BasicActions.goToURLAddBaseURL.doAction(context);
-
         DatasetCreationChecks.unauthorizedDatasetAccess.doAction(context);
 
         context.put(ContextConstants.DESTINATION_URL, fileUrl);
         BasicInteractions.navigateToUrlInteraction.doAction(context);
-
         DatasetCreationChecks.unauthorizedDatasetFileAccess.doAction(context);
+
+        context.put(ContextConstants.DESTINATION_URL, previewUrl);
+        BasicInteractions.navigateToUrlInteraction.doAction(context);
+        DatasetCreationChecks.unauthorizedDatasetPreviewAccess.doAction(context);
 
         BasicActions.goToHomePageAction.doAction(context);
         LoginActions.logoutAction.doAction(context);

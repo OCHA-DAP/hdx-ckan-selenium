@@ -40,6 +40,13 @@ public class DatasetCreationInteraction {
         logger.info("click on Next Add Data");
     };
 
+    public static IInteraction getPreviewLinkInteraction = context -> {
+        WebElement preview = WD(context).findElement(By.cssSelector(".ga-preview"));
+        String link = preview.getAttribute("href");
+        context.put(DatasetConstants.PREVIEW_URL, link);
+        logger.info("click on Next Add Data");
+    };
+
     public static IInteraction clickSelectorCountryInteraction = context -> {
 
 		String selector = "div.select2-container a.select2-choice";
