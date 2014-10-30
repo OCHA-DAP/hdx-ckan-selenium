@@ -51,6 +51,13 @@ public class DatasetCreationChecks {
         assertTrue(login.getText().startsWith("Login"));
     };
 
+    public static ICheckAction unauthorizedDatasetSearchAccess = context -> {
+        final WebElement heading = WD(context).findElement(By.cssSelector("h2"));
+        assertNotNull(heading);
+        assertNotNull(heading.getText());
+        assertTrue(heading.getText().trim().startsWith("Sorry no datasets found for"));
+    };
+
     public static ICheckAction addedCountryCheck = context -> {
         final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
         final WebElement addedCountry = WD(context).findElement(By.id(countryID));
