@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.ocha.hdx.selenium.action.BasicActions;
 import org.ocha.hdx.selenium.action.DatasetListPageActions;
 import org.ocha.hdx.selenium.action.LoginActions;
+import org.ocha.hdx.selenium.action.OrganizationListPageActions;
 import org.ocha.hdx.selenium.check.DatasetCreationChecks;
-import org.ocha.hdx.selenium.entities.SearchResultInfo;
 import org.ocha.hdx.selenium.interaction.BasicInteractions;
 import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.DatasetConstants;
@@ -38,8 +38,9 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
         String fileUrl = (String) context.get(DatasetConstants.FILE_URL);
         String previewUrl = (String) context.get(DatasetConstants.PREVIEW_URL);
 
-
         testTitle(context, title, url);
+
+        testDatasetVisibleOrgPage(context);
 
         LoginActions.logoutAction.doAction(context);
         //Now the dataset is created by the "editor" user and is private
@@ -56,6 +57,9 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
 
         testSearch(context, title);
 
+        testDatasetNotVisibileOrgPage(context);
+
+
         /**
          * Test 2 - New user tries to access the dataset - shouldn't be able to do it
          */
@@ -70,6 +74,8 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
         testPreview(context, previewUrl);
 
         testSearch(context, title);
+
+        testDatasetNotVisibileOrgPage(context);
 
         BasicActions.goToHomePageAction.doAction(context);
         LoginActions.logoutAction.doAction(context);
@@ -86,7 +92,19 @@ public class PrivateDatasetTest extends AbstractHdxSeleniumTest {
 
         testSearch(context, title);
 
+        testDatasetVisibleOrgPage(context);
+
         LoginActions.logoutAction.doAction(context);
+    }
+
+    private void testDatasetVisibleOrgPage(Map<String, Object> context) {
+        OrganizationListPageActions.viewEditorOrgFromConfigByUrlAction.doAction(context);
+        DatasetCreationChecks.checkDatasetVisibleOnOrgPage.doAction(context);
+    }
+
+    private void testDatasetNotVisibileOrgPage(Map<String, Object> context) {
+        OrganizationListPageActions.viewEditorOrgFromConfigByUrlAction.doAction(context);
+        DatasetCreationChecks.checkDatasetNotVisibleOnOrgPage.doAction(context);
     }
 
     private void testTitle(Map<String, Object> context, String title, String url) {

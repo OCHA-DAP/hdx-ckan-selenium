@@ -3,10 +3,7 @@
  */
 package org.ocha.hdx.selenium.check;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.ocha.hdx.selenium.util.Util.FF;
 import static org.ocha.hdx.selenium.util.Util.WD;
 
@@ -16,6 +13,8 @@ import org.ocha.hdx.selenium.util.GenericFind;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 
 /**
@@ -71,6 +70,27 @@ public class DatasetCreationChecks {
         String existingTitle = addedCountry.getText();
         assertEquals(title, existingTitle);
     };
+
+    public static ICheckAction checkDatasetVisibleOnOrgPage = context -> {
+        final String title = (String) context.get(DatasetConstants.TITLE);
+        final List<WebElement> links = WD(context).findElements(By.cssSelector(".dataset-heading a"));
+        assertTrue(links.size() > 0);
+        WebElement link = links.get(0);
+        assertNotNull(link);
+        String existingTitle = link.getText().trim();
+        assertEquals(title, existingTitle);
+    };
+
+    public static ICheckAction checkDatasetNotVisibleOnOrgPage = context -> {
+        final String title = (String) context.get(DatasetConstants.TITLE);
+        final List<WebElement> links = WD(context).findElements(By.cssSelector(".dataset-heading a"));
+        assertTrue(links.size() > 0);
+        WebElement link = links.get(0);
+        assertNotNull(link);
+        String existingTitle = link.getText().trim();
+        assertNotEquals(title, existingTitle);
+    };
+
 
     public static ICheckAction removedCountryCheck = context -> {
 		final String countryID = (String) context.remove(DatasetConstants.EL_COUNTRY_ID);
