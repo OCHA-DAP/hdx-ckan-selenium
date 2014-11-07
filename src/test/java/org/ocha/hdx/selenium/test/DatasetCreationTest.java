@@ -97,7 +97,7 @@ public class DatasetCreationTest extends AbstractHdxSeleniumTest {
 
 		DatasetCreationActions.fillFormResourcesAction.doAction(context);
 
-		logger.info("Create dataset step 2");
+		logger.info("End create dataset step 2");
 	}
 
 }
