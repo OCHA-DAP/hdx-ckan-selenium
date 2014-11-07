@@ -75,6 +75,10 @@ public class UserAndOrganizationTest extends AbstractHdxSeleniumTest{
 		BasicActions.goToOrgListUsingMainMenuAction.doAction(context);
 		//		OrganizationListPageActions.searchForOrgFromConfigAction.doAction(context);
 		OrganizationListPageActions.viewOrgFromConfigByUrlAction.doAction(context);
+		
+		OrganizationViewPageChecks.wrongUsernameCheck.doAction(context);
+		OrganizationListPageActions.viewOrgFromConfigByUrlAction.doAction(context);
+		
 		OrganizationViewPageActions.addUserFromConfigToOrgAsMember.doAction(context);
 
 		OrganizationViewPageChecks.userFromConfigInMemberListAsMemberCheck.doAction(context);

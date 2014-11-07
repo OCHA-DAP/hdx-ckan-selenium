@@ -17,16 +17,19 @@ public class DatasetListPageActions {
 	public static IAction changeSortingToNameAscAction = context -> DatasetListPageInteractions.changeSortingToNameAscInteraction.doAction(context);
 	public static IAction changeSortingToNameDescAction = context -> DatasetListPageInteractions.changeSortingToNameDescInteraction.doAction(context);
 
-	public static IAction searchForHealthAction = context -> {
-		context.put(ContextConstants.TEXT_TO_WRITE, "health");
+	public static IAction searchForAction = context -> {
 		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
-
 	};
 
-	public static IAction searchForAirportsInZambiaAction = context -> {
+    public static IAction searchForHealthAction = context -> {
+        context.put(ContextConstants.TEXT_TO_WRITE, "health");
+        DatasetListPageInteractions.searchForTextInteraction.doAction(context);
+
+    };
+
+    public static IAction searchForAirportsInZambiaAction = context -> {
 		context.put(ContextConstants.TEXT_TO_WRITE, "Airports in Zambia");
 		DatasetListPageInteractions.searchForTextInteraction.doAction(context);
-
 	};
 	
 	public static IAction searchForPakistanBaselineAction = context -> {

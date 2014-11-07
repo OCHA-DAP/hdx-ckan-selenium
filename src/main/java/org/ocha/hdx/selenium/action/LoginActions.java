@@ -15,7 +15,7 @@ public class LoginActions {
 
 	public static IAction loginAsNewUserAction = context -> {
 		final String newUser = Config.getNomemberUsername();
-		final String password = Config.getEditorUserPassword();
+		final String password = Config.getNomemberUserPassword();
 		context.put(ContextConstants.USERNAME, newUser);
 		context.put(ContextConstants.PASSWORD, password);
 		LoginInteractions.loginInteraction.doAction(context);

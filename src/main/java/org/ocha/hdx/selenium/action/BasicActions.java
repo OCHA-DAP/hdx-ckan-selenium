@@ -35,4 +35,12 @@ public class BasicActions {
 		BasicInteractions.navigateToUrlInteraction.doAction(context);
 	};
 
+    public static IAction goToURLAddBaseURL = context -> {
+        String url = (String) context.get(ContextConstants.DESTINATION_URL);
+        String base = Config.getDomainWithHttp();
+        context.put(ContextConstants.DESTINATION_URL, base+url);
+        BasicInteractions.navigateToUrlInteraction.doAction(context);
+    };
+
+
 }

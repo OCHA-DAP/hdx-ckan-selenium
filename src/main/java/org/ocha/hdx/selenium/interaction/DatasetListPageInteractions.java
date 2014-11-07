@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.ocha.hdx.selenium.entities.SearchResultInfo;
-import org.ocha.hdx.selenium.test.DatasetListPageSortingTest;
 import org.ocha.hdx.selenium.util.BasicFind;
 import org.ocha.hdx.selenium.util.ContextConstants;
 import org.ocha.hdx.selenium.util.FindInDatasetListPage;
@@ -28,7 +27,7 @@ import org.openqa.selenium.WebElement;
  */
 public class DatasetListPageInteractions {
 
-	private static Logger logger = Logger.getLogger(DatasetListPageSortingTest.class);
+	private static Logger logger = Logger.getLogger(DatasetListPageInteractions.class);
 
 	public static IInteraction changeSortingToSomethingInteraction = context -> {
 		final String selectedLabelVal = REMOVE(context, ContextConstants.SELECTED_LABEL_VAL, String.class);

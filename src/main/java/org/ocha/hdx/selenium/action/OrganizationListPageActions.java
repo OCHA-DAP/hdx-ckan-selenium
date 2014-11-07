@@ -19,7 +19,17 @@ public class OrganizationListPageActions {
 
 	};
 
-	public static IAction viewOrgFromConfigByUrlAction = context -> {
+    public static IAction viewEditorOrgFromConfigByUrlAction = context -> {
+        final String orgName = Config.getOrgNameForEditorUser().toLowerCase();
+        context.put(ContextConstants.ORG_NAME, orgName);
+
+        final String url = Config.getDomainWithHttp();
+        context.put(ContextConstants.DESTINATION_URL, url);
+
+        OrganizationListPageInteraction.viewOrgByUrlInteraction.doAction(context);
+    };
+
+    public static IAction viewOrgFromConfigByUrlAction = context -> {
 		final String orgName = Config.getOrgNameForNomemberUser().toLowerCase();
 		context.put(ContextConstants.ORG_NAME, orgName);
 

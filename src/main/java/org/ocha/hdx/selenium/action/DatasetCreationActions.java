@@ -19,7 +19,15 @@ public class DatasetCreationActions {
 		DatasetCreationInteraction.clickOnNextAddDataInteraction.doAction(context);
 	};
 
-	public static IAction addCountryAction = context -> {
+    public static IAction saveAction = context -> {
+        DatasetCreationInteraction.clickOnSaveInteraction.doAction(context);
+    };
+
+    public static IAction getPreviewLinkAction = context -> {
+        DatasetCreationInteraction.getPreviewLinkInteraction.doAction(context);
+    };
+
+    public static IAction addCountryAction = context -> {
 		DatasetCreationInteraction.clickSelectorCountryInteraction.doAction(context);
 	};
 
@@ -27,22 +35,23 @@ public class DatasetCreationActions {
 		DatasetCreationInteraction.clickRemoveCountryInteraction.doAction(context);
 	};
 
-	public static IAction fillFormFieldsAction = context -> {
-		DatasetCreationActions.datasetTitleAction.doAction(context);
-		DatasetCreationActions.datasetSourceAction.doAction(context);
-		DatasetCreationActions.datasetDescriptionAction.doAction(context);
-		DatasetCreationActions.datasetLicenseAction.doAction(context);
-		DatasetCreationActions.datasetCheckOrganisationAction.doAction(context);
-		DatasetCreationActions.datasetVisibilityAction.doAction(context);
-		DatasetCreationActions.datasetMethodologyAction.doAction(context);
-		//		DatasetCreationActions.datasetTagsAction.doAction(context);
-		DatasetCreationActions.datasetCaveatsAction.doAction(context);
-		DatasetCreationActions.datasetDatesAction.doAction(context);
-	};
+//	public static IAction fillFormFieldsAction = context -> {
+//		DatasetCreationActions.datasetTitleAction.doAction(context);
+//		DatasetCreationActions.datasetSourceAction.doAction(context);
+//		DatasetCreationActions.datasetDescriptionAction.doAction(context);
+//		DatasetCreationActions.datasetLicenseAction.doAction(context);
+//		DatasetCreationActions.datasetCheckOrganisationAction.doAction(context);
+//		DatasetCreationActions.datasetVisibilityAction.doAction(context);
+//		DatasetCreationActions.datasetMethodologyAction.doAction(context);
+//		//		DatasetCreationActions.datasetTagsAction.doAction(context);
+//		DatasetCreationActions.datasetCaveatsAction.doAction(context);
+//		DatasetCreationActions.datasetDatesAction.doAction(context);
+//	};
 
 	public static IAction datasetTitleAction = context -> {
 		final String title = Config.getEditorDatasetTitle() + System.currentTimeMillis();
 		DatasetCreationInteraction.datasetTitleInteraction.doAction(context, DatasetConstants.TITLE, title);
+        DatasetCreationInteraction.datasetURLInteraction.doAction(context);
 	};
 
 	public static IAction datasetSourceAction = context -> {
@@ -70,9 +79,9 @@ public class DatasetCreationActions {
 		DatasetCreationInteraction.datasetCaveatsInteraction.doAction(context, DatasetConstants.CAVEATS, DatasetConstants.TEXT_SHORT);
 	};
 
-	public static IAction datasetCheckOrganisationAction = context -> {
-		DatasetCreationInteraction.datasetCheckOrganisationInteraction.doAction(context);
-	};
+//	public static IAction datasetCheckOrganisationAction = context -> {
+//		DatasetCreationInteraction.datasetCheckOrganisationInteraction.doAction(context);
+//	};
 
 	public static IAction datasetDatesAction = context -> {
 		DatasetCreationInteraction.datasetDatesInteraction.doAction(context);
