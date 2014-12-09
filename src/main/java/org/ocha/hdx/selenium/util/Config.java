@@ -79,6 +79,10 @@ public class Config {
 	public static String getSysadminPassword() {
 		return prop.getProperty("sysadmin.password") ;
 	}
+	
+	public static String getFirefoxProfileName() {
+		return prop.getProperty("firefox.profile.name") ;
+	}
 
 	public static boolean getNonReversableActions() {
 		final String reversableStr =  prop.getProperty("base.non_reversable_actions");

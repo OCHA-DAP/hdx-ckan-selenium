@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public interface IFrameWaitHelper {
 	default void wrapperDoAction (final Map<String,Object> context) {
 		WD(context).switchTo().frame(0);
-		new WebDriverWait(WD(context),5).until( 
+		new WebDriverWait(WD(context),7).until( 
 				(ExpectedCondition<Boolean>) d -> FF(context, GenericFind.class).
 				byCSSSelectorAndAttributeContaining(".pagination input", "name", "from")!=null
 				);
