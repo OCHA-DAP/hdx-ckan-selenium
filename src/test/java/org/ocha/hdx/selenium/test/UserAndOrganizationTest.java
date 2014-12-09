@@ -48,6 +48,8 @@ public class UserAndOrganizationTest extends AbstractHdxSeleniumTest{
 		BasicActions.goToLoginPageUsingMainMenuAction.doAction(context);
 		LoginActions.loginAsNewUserAction.doAction(context);
 
+		
+		DashboardPageActions.goToMyOrganizationsAction.doAction(context);
 		DashboardPageActions.joinOrganizationAction.doAction(context);
 
 		OrganizationListPageActions.searchForOrgFromConfigAction.doAction(context);
