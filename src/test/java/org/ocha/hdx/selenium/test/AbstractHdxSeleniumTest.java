@@ -8,11 +8,9 @@ import java.util.Map;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.ocha.hdx.selenium.util.Config;
 import org.ocha.hdx.selenium.util.ContextConstants;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.firefox.MarionetteDriver;
 
 /**
  * @author alexandru-m-g
@@ -23,13 +21,16 @@ public class AbstractHdxSeleniumTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		final String profileName = Config.getFirefoxProfileName();
-		if ( profileName != null && !"".equals(profileName.trim()) ) {
-			final ProfilesIni allProfiles = new ProfilesIni();
-			driver = new FirefoxDriver(allProfiles.getProfile(profileName.trim()));
-		} else {
-			driver = new FirefoxDriver();
-		}
+//		final String profileName = Config.getFirefoxProfileName();
+//		String marionetteDriverLocation = "/usr/bin/wires";
+//		System.setProperty("webdriver.gecko.driver", marionetteDriverLocation);
+//		if ( profileName != null && !"".equals(profileName.trim()) ) {
+//			final ProfilesIni allProfiles = new ProfilesIni();
+//			driver = new MarionetteDriver();
+//		} else {
+//			driver = new MarionetteDriver();
+//		}
+		driver = new MarionetteDriver();
 	}
 
 	@AfterClass

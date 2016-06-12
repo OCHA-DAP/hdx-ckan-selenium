@@ -18,3 +18,5 @@ sysadmin.password=password
 
 url.test = http://localhost:5000/dataset/new_resource/selenium-new-dataset1408978804027
 url.file = /Users/test.xlsx
+
+mapexploer.url = http://172.17.42.1/mapx/

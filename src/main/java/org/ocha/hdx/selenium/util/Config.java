@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
  *
  */
 public class Config {
-	private static Logger logger = Logger.getLogger(FindInDatasetListPage.class);
+	private static Logger logger = Logger.getLogger(Config.class);
 
 	private static Properties prop = new Properties();
 
@@ -91,6 +91,10 @@ public class Config {
 		} else {
 			return false;
 		}
+	}
+	
+	public static String getMapExplorerUrl() {
+		return prop.getProperty("mapexplorer.url") ;
 	}
 
 }
